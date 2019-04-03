@@ -1,13 +1,10 @@
 <div class="limit-width">
   <Navbar as |nav|>
-    {{link-to 'Docs' 'index' class=nav.styleClass}}
+    {{link-to 'Product Groups' 'product-groups' class=nav.styleClass}}
     {{link-to 'Examples' 'index' class=nav.styleClass}}
     {{link-to 'Blog' 'index' class=nav.styleClass}}
   </Navbar>
 
-  <h1>This is a heading</h1>
-
-  <p>Hello tailwind, this is the start of the new application to handle product information</p>
+  {{outlet}}
 </div>
 
-{{outlet}}
