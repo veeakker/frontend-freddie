@@ -1,2 +1,12 @@
-@import 'tailwind.css';
+@import 'tailwind';
 
+body {
+  @extend .antialiased;
+  @extend .font-sans;
+  @extend .text-grey-darkest;
+}
+
+.limit-width {
+  max-width: 1984px;
+  margin: 0 auto;
+}
