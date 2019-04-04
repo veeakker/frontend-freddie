@@ -19,3 +19,26 @@
 .card-array-card.raised + .card-array-card.raised {
     @apply mt-2;
 }
+
+.card-array-card {
+    @apply bg-grey-lighter;
+}
+.card-array-card .card-array-card {
+    @apply bg-grey-lightest;
+}
+
+.card-array-card.raised .card-array-card.raised {
+    @apply bg-grey-lighter;
+}
+
+.card-array-card.raised .card-array-card.raised .card-array-card.raised {
+    @apply bg-grey-lightest;
+}
+
+.card-array-card.raised .card-array-card.raised .card-array-card.raised .card-array-card.raised {
+    @apply bg-grey-lighter;
+}
+
+.card-array-card.raised .card-array-card.raised .card-array-card.raised .card-array-card.raised .card-array-card.raised {
+    @apply bg-grey-lightest;
+}

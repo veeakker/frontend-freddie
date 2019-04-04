@@ -19,8 +19,8 @@
   <CardArray as |array|>
     {{#each sortedProductGroups as |productGroup|}}
       <LocalVariable as |raised lv|>
-        <array.card onClick={{lv.toggle}} @raised={{raised}}>
-          {{productGroup.label}}
+        <array.card @raised={{raised}}>
+          <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @expanded={{raised}} />
         </array.card>
       </LocalVariable>
     {{/each}}
