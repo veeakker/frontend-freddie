@@ -14,44 +14,16 @@
 </div>
 
 <div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
-  <p>Click the cards for more detail</p>
+  <p>These are the product groups.  Select them for more information.</p>
 
   <CardArray as |array|>
-    <LocalVariable as |raised lv|>
-      <array.card onClick={{lv.toggle}} @raised={{raised}}>
-        Let
-      </array.card>
-    </LocalVariable>
-    <LocalVariable as |raised lv|>
-      <array.card onClick={{lv.toggle}} @raised={{raised}}>
-        There
-      </array.card>
-    </LocalVariable>
-    <LocalVariable as |raised lv|>
-      <array.card onClick={{lv.toggle}} @raised={{raised}}>
-        Be
-      </array.card>
-    </LocalVariable>
-    <LocalVariable as |raised lv|>
-      <array.card onClick={{lv.toggle}} @raised={{raised}}>
-        Rock
-      </array.card>
-    </LocalVariable>
-    <LocalVariable as |raised lv|>
-      <array.card onClick={{lv.toggle}} @raised={{raised}}>
-        And
-      </array.card>
-    </LocalVariable>
-    <LocalVariable as |raised lv|>
-      <array.card onClick={{lv.toggle}} @raised={{raised}}>
-        Dandy
-      </array.card>
-    </LocalVariable>
-    <LocalVariable as |raised lv|>
-      <array.card onClick={{lv.toggle}} @raised={{raised}}>
-        Cards!
-      </array.card>
-    </LocalVariable>
+    {{#each sortedProductGroups as |productGroup|}}
+      <LocalVariable as |raised lv|>
+        <array.card onClick={{lv.toggle}} @raised={{raised}}>
+          {{productGroup.label}}
+        </array.card>
+      </LocalVariable>
+    {{/each}}
   </CardArray>
 </div>
 
