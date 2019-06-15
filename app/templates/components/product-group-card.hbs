@@ -1,33 +1,80 @@
 <div class="overflow-y-hidden">
-  {{#animated-container}}
-    {{#animated-if (not @expanded)}}
-      <p onClick={{@headerClick}}>
-        {{@productGroup.label}}
-        {{#animated-if @showIndex use=this.transition}}<span class="text-grey-dark">[Index {{@productGroup.sortIndex}}]</span>{{/animated-if}}
-      </p>
-    {{else}}
-      <h1 onClick={{@headerClick}}>{{@productGroup.label}}</h1>
-      <p>
-        {{#if @showIndex}}{{@productGroup.index}}{{/if}}
-      </p>
-      <CardArray as |array|>
-        {{#sortable-objects
-           sortableObjectList=@productGroup.sortedChildren
-           sortEndAction=(action this.sortedChildren)
-           enableSort=true
-           sortingScope=this.element.id}}
-          {{#animated-each @productGroup.sortedChildren as |child|}}
+  <AnimatedContainer>
+    <AnimatedContainer>
+      {{#animated-if (not @expanded) use=this.headerTransition}}
+        <p class="inline-block" onClick={{@headerClick}}>
+          {{@productGroup.label}}
+          {{#animated-if @showIndex use=this.transition}}<span class="text-grey-dark">[Index {{@productGroup.sortIndex}}]</span>{{/animated-if}}
+        </p>
+      {{else}}
+        <h1 class="inline-block" onClick={{@headerClick}}>{{@productGroup.label}}</h1>
+      {{/animated-if}}
+    </AnimatedContainer>
+
+    {{#animated-if @expanded}}
+      <div class="float-right">
+        <button {{action this.toggleEditing}}>
+          {{#animated-if this.editing use=this.transition}}
+            <span class="text-grey-dark">
+              Show
+            </span>
+          {{else}}
+            <span class="text-grey">
+              Edit
+            </span>
+          {{/animated-if}}
+        </button>
+      </div>
+      <div class="overflow-hidden">
+        <AnimatedContainer>
+          {{#animated-if @showIndex use=this.transition}}
+            <p class="py-3">
+              [ Index: {{@productGroup.sortIndex}} ]
+            </p>
+          {{/animated-if}}
+        </AnimatedContainer>
+      </div>
+      <div class="overflow-hidden">
+        <AnimatedContainer>
+          {{#animated-if this.editing use=this.transition}}
+            <p class="pt-8">
+              <label>Group name</label>
+              {{input value=@productGroup.label class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" placeholder="Gevogelte"}}
+              <label>Group index</label>
+              {{input value=@productGroup.sortIndex class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="number" placeholder="42"}}
+            </p>
+          {{/animated-if}}
+
+          {{#animated-if @productGroup.hasDirtyAttributes use=this.transition}}
+            <button class="font-bold py-2 px-4 my-4 mx-2 rounded bg-green-lighter text-green" {{action this.update}}>Update</button>
+            <button class="font-bold py-2 px-4 my-4 mx-2 rounded bg-orange-lighter text-grey" {{action this.undo}}>Undo</button>
+          {{/animated-if}}
+        </AnimatedContainer>
+      </div>
+    {{/animated-if}}
+
+    <AnimatedContainer>
+      {{#animated-if @expanded}}
+        <div class="my-4"> {{!-- spacer --}}</div>
+      {{/animated-if}}
+    </AnimatedContainer>
+
+    <div class="overflow-hidden">
+      <AnimatedContainer>
+        <CardArray as |array|>
+          {{#animated-each (if @expanded @productGroup.sortedChildren this.emptyArray) use=this.transition as |child|}}
             <LocalVariable @default={{false}} as |openChild lv|>
-              {{#draggable-object content=child isSortable=true sortingScope=this.element.id}}
-                <array.card @raised={{openChild}}>
-                  <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} />
-                </array.card>
-              {{/draggable-object}}
+              <array.card @raised={{openChild}}>
+                <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} />
+              </array.card>
             </LocalVariable>
           {{/animated-each}}
-        {{/sortable-objects}}
-      </CardArray>
-      {{yield}}
+        </CardArray>
+      </AnimatedContainer>
+    </div>
+
+    {{#animated-if @expanded}}
+      <div class="my-4"> {{!-- spacer --}}</div>
     {{/animated-if}}
-  {{/animated-container}}
+  </AnimatedContainer>
 </div>

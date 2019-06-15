@@ -17,7 +17,17 @@
   <p>
     <span class="card-array-label text-lg font-bold">Product Groups</span>
     <div class="float-right">
-      <button {{action this.toggleEditing}}>{{#if this.editing}}Show{{else}}Edit{{/if}}</button>
+      <button {{action this.toggleEditing}}>
+        {{#animated-if this.editing use=this.transition}}
+          <span class="text-grey-dark">
+            Show
+          </span>
+        {{else}}
+          <span class="text-grey">
+            Edit
+          </span>
+        {{/animated-if}}
+      </button>
       <SortProperties @properties={{this.sortProperties}} @sort={{this.sortProperty}} @sortAction={{action this.updateSort}} />
     </div>
   </p>
