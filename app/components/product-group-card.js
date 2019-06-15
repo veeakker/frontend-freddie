@@ -1,3 +1,4 @@
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
@@ -8,6 +9,8 @@ import move from 'ember-animated/motions/move';
 import { wait } from 'ember-animated';
 
 export default class ProductGroupCardComponent extends Component {
+  @service store;
+
   @action
   sortedChildren() {
     /* do nothing */
@@ -73,5 +76,28 @@ export default class ProductGroupCardComponent extends Component {
   }
 
   /* -- creation functionality -- */
+  @tracked
+  addingChild = false;
+  @tracked
+  newProductGroupLabel = null;
+  @tracked
+  newProductGroupSortIndex = null;
 
+  @action
+  async createChild( label, sortIndex ) {
+    if( !label || label == "" ) {
+      alert("Can't create product groups without label");
+      return;
+    }
+
+    sortIndex = parseInt( sortIndex );
+    const record = this.store.createRecord( 'product-group', { label, sortIndex } );
+    await record.save();
+    record.parentGroup = this.args.productGroup;
+    await record.save();
+    await wait( 250 );
+    this.newProductGroupLabel = null;
+    this.newProductGroupSortIndex = null;
+    this.addingChild = false;
+  }
 }

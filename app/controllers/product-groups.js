@@ -38,6 +38,10 @@ export default class ProductGroupsController extends Controller {
 
   @action
   async createProductGroup( label, sortIndex ) {
+    if( !label || label == "" ) {
+      alert("Can't create product groups without label");
+      return;
+    }
     await this.store.createRecord( 'product-group', { label, sortIndex } ).save();
     this.setProperties({newProductGroupLabel: "", newProductGroupSortIndex: null});
     this.send('reloadModel');

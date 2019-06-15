@@ -35,12 +35,13 @@
     <AnimatedContainer>
       {{#animated-if this.editing}}
         <p class="pt-8">
+          <h4 class="mb-4">Create new</h4>
           <label>Group name</label>
           {{input value=this.newProductGroupLabel class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" placeholder="Gevogelte"}}
           <label>Group index</label>
           {{input value=this.newProductGroupSortIndex class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="number" placeholder="42"}}
 
-          <button {{action this.createProductGroup this.newProductGroupLabel this.newProductGroupSortIndex}}>Create</button>
+          <button class="mt-4 btn btn-primary" {{action this.createProductGroup this.newProductGroupLabel this.newProductGroupSortIndex}}>Create</button>
         </p>
       {{/animated-if}}      
     </AnimatedContainer>

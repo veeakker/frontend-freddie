@@ -38,6 +38,7 @@
         <AnimatedContainer>
           {{#animated-if this.editing use=this.transition}}
             <p class="pt-8 pr-3 pb-2">
+              <h4 class="mb-4">Update current</h4>
               <label class="input-label">Group name</label>
               {{input value=@productGroup.label class="input-value" placeholder="Gevogelte"}}
               <label class="input-label">Group index</label>
@@ -71,7 +72,7 @@
           {{#animated-each (if @expanded @productGroup.sortedChildren this.emptyArray) use=this.transition as |child|}}
             <LocalVariable @default={{false}} as |openChild lv|>
               <array.card @raised={{openChild}}>
-                <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} />
+                <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} @showIndex={{this.editing}} />
               </array.card>
             </LocalVariable>
           {{/animated-each}}
@@ -82,5 +83,24 @@
     {{#animated-if @expanded}}
       <div class="my-4"> {{!-- spacer --}}</div>
     {{/animated-if}}
+
+    <AnimatedContainer>
+      {{#animated-if (and this.editing @expanded) use=this.transition}}
+        {{#animated-if (not this.addingChild)}}
+          <button {{action (mut this.addingChild) true}} class="btn btn-secondary">Add child</button>
+        {{else}}
+          <p class="pt-8 pr-3 pb-2">
+            <h4 class="mb-4">Add new child</h4>
+            <label class="input-label">Group name</label>
+            {{input value=this.newProductGroupLabel class="input-value" placeholder="Gevogelte"}}
+            <label class="input-label">Group index</label>
+            {{input value=this.newProductGroupSortIndex class="input-value" placeholder="42" type="number"}}
+          </p>
+          <button {{action this.createChild this.newProductGroupLabel this.newProductGroupSortIndex}} class="btn btn-primary">Create</button>
+          <button {{action (mut this.addingChild false)}} class="btn btn-no">Cancel</button>
+        {{/animated-if}}
+      {{/animated-if}}
+    </AnimatedContainer>
+
   </AnimatedContainer>
 </div>
