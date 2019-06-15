@@ -102,5 +102,28 @@
       {{/animated-if}}
     </AnimatedContainer>
 
+    <AnimatedContainer>
+      {{#animated-if @expanded use=this.transition}}
+        {{#animated-if (not this.showProducts) use=this.transition}}
+          <button {{action (mut this.showProducts) true}} class="btn btn-secondary">
+            Show products
+          </button>
+          <button class="btn btn-secondary">
+            Manage products
+          </button>
+        {{else}}
+          <h4 class="mb-4">Showing products</h4>
+
+          <button {{action (mut this.showProducts) false}} class="btn btn-secondary">
+            Hide products
+          </button>
+
+          <button class="btn btn-secondary">
+            Manage products
+          </button>
+        {{/animated-if}}
+      {{/animated-if}}
+    </AnimatedContainer>
+
   </AnimatedContainer>
 </div>

@@ -100,4 +100,8 @@ export default class ProductGroupCardComponent extends Component {
     this.newProductGroupSortIndex = null;
     this.addingChild = false;
   }
+
+  /* -- showing products -- */
+  @tracked
+  showProducts = false;
 }
