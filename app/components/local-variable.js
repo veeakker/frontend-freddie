@@ -9,7 +9,7 @@ export default class LocalVariableComponent extends Component {
 
   @computed( 'didSetLocalVariable', 'localVariable', 'args.default' )
   get value(){
-    console.log(`Default for value is ${this.args.default}`);
+    // console.log(`Default for value is ${this.args.default}`);
     if( this.didSetLocalVariable )
       return this.localVariable;
     else

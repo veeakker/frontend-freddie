@@ -14,17 +14,36 @@
 </div>
 
 <div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
-  <p>These are the product groups.  Select them for more information.</p>
-
-  <CardArray as |array|>
-    {{#each sortedProductGroups as |productGroup|}}
-      <LocalVariable as |raised lv|>
-        <array.card @raised={{raised}}>
-          <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @expanded={{raised}} />
-        </array.card>
-      </LocalVariable>
-    {{/each}}
-  </CardArray>
+  <p>
+    <span class="card-array-label text-lg font-bold">Product Groups</span>
+    <div class="float-right">
+      <button {{action this.toggleEditing}}>{{#if this.editing}}Show{{else}}Edit{{/if}}</button>
+      <SortProperties @properties={{this.sortProperties}} @sort={{this.sortProperty}} @sortAction={{action this.updateSort}} />
+    </div>
+  </p>
+  <div class="overflow-hidden">
+    <AnimatedContainer>
+      {{#animated-if this.editing}}
+        <p class="pt-8">
+          <button>New</button>
+        </p>
+      {{/animated-if}}      
+    </AnimatedContainer>
+  </div>
+  <div class="overflow-hidden">
+    <AnimatedContainer>
+      <CardArray as |array|>
+        {{#animated-each this.sortedProductGroups use=this.fade as |productGroup|}}
+          {{productGroup.label}}
+          <LocalVariable as |raised lv|>
+            <array.card @raised={{raised}}>
+              <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @expanded={{raised}} />
+            </array.card>
+          </LocalVariable>
+        {{/animated-each}}
+      </CardArray>
+    </AnimatedContainer>
+  </div>
 </div>
 
 <div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">

@@ -4,15 +4,22 @@
       <p onClick={{@headerClick}}>{{@productGroup.label}}</p>
     {{else}}
       <h1 onClick={{@headerClick}}>{{@productGroup.label}}</h1>
-
       <CardArray as |array|>
-        {{#animated-each @productGroup.sortedChildren as |child|}}
-          <LocalVariable @default={{false}} as |openChild lv|>
-            <array.card @raised={{openChild}}>
-              <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} />
-            </array.card>
-          </LocalVariable>
-        {{/animated-each}}
+        {{#sortable-objects
+           sortableObjectList=@productGroup.sortedChildren
+           sortEndAction=(action this.sortedChildren)
+           enableSort=true
+           sortingScope=this.element.id}}
+          {{#animated-each @productGroup.sortedChildren as |child|}}
+            <LocalVariable @default={{false}} as |openChild lv|>
+              {{#draggable-object content=child isSortable=true sortingScope=this.element.id}}
+                <array.card @raised={{openChild}}>
+                  <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} />
+                </array.card>
+              {{/draggable-object}}
+            </LocalVariable>
+          {{/animated-each}}
+        {{/sortable-objects}}
       </CardArray>
       {{yield}}
     {{/animated-if}}
