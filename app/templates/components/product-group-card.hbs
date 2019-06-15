@@ -1,31 +1,31 @@
 <div class="overflow-y-hidden">
   <AnimatedContainer>
-    <AnimatedContainer>
+    <AnimatedContainer class="mr-10">
       {{#animated-if (not @expanded) use=this.headerTransition}}
-        <p class="inline-block" onClick={{@headerClick}}>
+        <p class="inline-block cursor-pointer" onClick={{@headerClick}}>
           {{@productGroup.label}}
           {{#animated-if @showIndex use=this.transition}}<span class="text-grey-dark">[Index {{@productGroup.sortIndex}}]</span>{{/animated-if}}
         </p>
       {{else}}
-        <h1 class="inline-block" onClick={{@headerClick}}>{{@productGroup.label}}</h1>
+        <h1 class="inline-block cursor-pointer" onClick={{@headerClick}}>{{@productGroup.label}}</h1>
       {{/animated-if}}
     </AnimatedContainer>
 
     {{#animated-if @expanded}}
-      <div class="float-right">
+      <div class="float-right -mt-6">
         <button {{action this.toggleEditing}}>
           {{#animated-if this.editing use=this.transition}}
-            <span class="text-grey-dark">
+            <span class="text-grey-dark cursor-pointer">
               Show
             </span>
           {{else}}
-            <span class="text-grey">
+            <span class="text-grey cursor-pointer">
               Edit
             </span>
           {{/animated-if}}
         </button>
       </div>
-      <div class="overflow-hidden">
+      <div class="overflow-y-hidden">
         <AnimatedContainer>
           {{#animated-if @showIndex use=this.transition}}
             <p class="py-3">
@@ -34,23 +34,29 @@
           {{/animated-if}}
         </AnimatedContainer>
       </div>
-      <div class="overflow-hidden">
+      <div class="overflow-y-hidden">
         <AnimatedContainer>
           {{#animated-if this.editing use=this.transition}}
-            <p class="pt-8">
-              <label>Group name</label>
-              {{input value=@productGroup.label class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" placeholder="Gevogelte"}}
-              <label>Group index</label>
-              {{input value=@productGroup.sortIndex class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="number" placeholder="42"}}
+            <p class="pt-8 pr-3 pb-2">
+              <label class="input-label">Group name</label>
+              {{input value=@productGroup.label class="input-value" placeholder="Gevogelte"}}
+              <label class="input-label">Group index</label>
+              <input class="input-value" value={{@productGroup.sortIndex}} {{on "change" (action "updateSortIndex")}} placeholder="42" type="number">
             </p>
           {{/animated-if}}
 
           {{#animated-if @productGroup.hasDirtyAttributes use=this.transition}}
-            <button class="font-bold py-2 px-4 my-4 mx-2 rounded bg-green-lighter text-green" {{action this.update}}>Update</button>
-            <button class="font-bold py-2 px-4 my-4 mx-2 rounded bg-orange-lighter text-grey" {{action this.undo}}>Undo</button>
+            <div class="my-4">
+              <button class="btn btn-primary" {{action this.update}}>Update</button>
+              <button class="btn btn-no" {{action this.undo}}>Undo</button>
+            </div>
           {{/animated-if}}
         </AnimatedContainer>
       </div>
+    {{/animated-if}}
+
+    {{#animated-if (and this.editing (eq @productGroup.sortedChildren.length 0))}}
+      <button class="btn btn-alarm" {{action this.remove}}>Remove</button>
     {{/animated-if}}
 
     <AnimatedContainer>
@@ -59,7 +65,7 @@
       {{/animated-if}}
     </AnimatedContainer>
 
-    <div class="overflow-hidden">
+    <div class="overflow-y-hidden">
       <AnimatedContainer>
         <CardArray as |array|>
           {{#animated-each (if @expanded @productGroup.sortedChildren this.emptyArray) use=this.transition as |child|}}

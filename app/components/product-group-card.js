@@ -61,6 +61,17 @@ export default class ProductGroupCardComponent extends Component {
     this.args.productGroup.rollbackAttributes();
   }
 
+  @action
+  remove() {
+    this.args.productGroup.destroyRecord();
+  }
+
+  @action
+  updateSortIndex(event) {
+    const value = parseInt( event.target.value || "0" );
+    this.args.productGroup.sortIndex = value;
+  }
+
   /* -- creation functionality -- */
 
 }
