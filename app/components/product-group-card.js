@@ -6,7 +6,7 @@ export default class ProductGroupCardComponent extends Component {
   @tracked isOpen = false
 
   @action
-  sortedChildren(...args){
+  sortedChildren(){
     // console.log("sorting children");
     // console.log(args);
   }

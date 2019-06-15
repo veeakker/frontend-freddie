@@ -1,9 +1,10 @@
 import { tracked } from '@glimmer/tracking';
-import { computed, action } from '@ember/object';
+import { action } from '@ember/object';
 import Controller from '@ember/controller';
 
 import { wait } from 'ember-animated';
 import { fadeIn } from 'ember-animated/motions/opacity';
+import move from 'ember-animated/motions/move';
 import fade from 'ember-animated/transitions/fade';
 
 export default class ProductGroupsController extends Controller {
@@ -11,7 +12,6 @@ export default class ProductGroupsController extends Controller {
   @tracked sortProperty = 'sortIndex'
   @tracked sortProperties = ['sortIndex', 'label']
 
-  // @computed( "model.@each.sortIndex" )
   get sortedProductGroups() {
     return this.get('model').sortBy(this.sortProperty);
   }
@@ -30,17 +30,5 @@ export default class ProductGroupsController extends Controller {
     this.editing = ! this.editing;
   }
 
-  fade = fade;
-
-  /* -- Animations -- */
-  * productGroupsTransition( { insertedSprites, duration } ) {
-    debugger;
-
-    const timeout = duration / 10;
-
-    for( const sprite of insertedSprites ) {
-      fadeIn( sprite, duration );
-      yield wait( timeout );
-    }
-  }
+  transition = fade;
 }

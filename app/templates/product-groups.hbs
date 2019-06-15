@@ -31,17 +31,15 @@
     </AnimatedContainer>
   </div>
   <div class="overflow-hidden">
-    <AnimatedContainer>
-      <CardArray as |array|>
-        {{#animated-each this.sortedProductGroups use=this.fade as |productGroup|}}
-          <LocalVariable as |raised lv|>
-            <array.card @raised={{raised}}>
-              <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @expanded={{raised}} />
-            </array.card>
-          </LocalVariable>
-        {{/animated-each}}
-      </CardArray>
-    </AnimatedContainer>
+    <CardArray as |array|>
+      {{#each this.sortedProductGroups as |productGroup|}}
+        <LocalVariable as |raised lv|>
+          <array.card @raised={{raised}}>
+            <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @expanded={{raised}} />
+          </array.card>
+        </LocalVariable>
+      {{/each}}
+    </CardArray>
   </div>
 </div>
 
