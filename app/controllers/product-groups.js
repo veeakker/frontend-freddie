@@ -11,7 +11,7 @@ export default class ProductGroupsController extends Controller {
   @tracked sortProperty = 'sortIndex'
   @tracked sortProperties = ['sortIndex', 'label']
 
-  @computed( "model.@each.sortIndex" )
+  // @computed( "model.@each.sortIndex" )
   get sortedProductGroups() {
     return this.get('model').sortBy(this.sortProperty);
   }

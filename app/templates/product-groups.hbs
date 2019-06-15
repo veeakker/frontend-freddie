@@ -1,5 +1,5 @@
 <div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
-  <h1 class="mt-2 mb-2">Hello product groups</h1>
+  <h1 class="mt-2 mb-2">Product groups management</h1>
   <p class="mt-2 mb-2">
     Nam libero justo, laoreet sit amet cursus sit amet, dictum sit amet justo? Dolor sit amet, consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula?
   </p>
@@ -34,7 +34,6 @@
     <AnimatedContainer>
       <CardArray as |array|>
         {{#animated-each this.sortedProductGroups use=this.fade as |productGroup|}}
-          {{productGroup.label}}
           <LocalVariable as |raised lv|>
             <array.card @raised={{raised}}>
               <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @expanded={{raised}} />
