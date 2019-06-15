@@ -1,6 +1,7 @@
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
+import fade from 'ember-animated/transitions/fade';
 
 export default class ProductGroupCardComponent extends Component {
   @tracked isOpen = false
@@ -10,4 +11,6 @@ export default class ProductGroupCardComponent extends Component {
     // console.log("sorting children");
     // console.log(args);
   }
+
+  transition = fade;
 }

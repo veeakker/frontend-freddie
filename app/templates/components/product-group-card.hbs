@@ -1,9 +1,15 @@
 <div class="overflow-y-hidden">
   {{#animated-container}}
     {{#animated-if (not @expanded)}}
-      <p onClick={{@headerClick}}>{{@productGroup.label}}</p>
+      <p onClick={{@headerClick}}>
+        {{@productGroup.label}}
+        {{#animated-if @showIndex use=this.transition}}<span class="text-grey-dark">[Index {{@productGroup.sortIndex}}]</span>{{/animated-if}}
+      </p>
     {{else}}
       <h1 onClick={{@headerClick}}>{{@productGroup.label}}</h1>
+      <p>
+        {{#if @showIndex}}{{@productGroup.index}}{{/if}}
+      </p>
       <CardArray as |array|>
         {{#sortable-objects
            sortableObjectList=@productGroup.sortedChildren

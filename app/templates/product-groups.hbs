@@ -25,7 +25,12 @@
     <AnimatedContainer>
       {{#animated-if this.editing}}
         <p class="pt-8">
-          <button>New</button>
+          <label>Group name</label>
+          {{input value=this.newProductGroupLabel class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" placeholder="Gevogelte"}}
+          <label>Group index</label>
+          {{input value=this.newProductGroupSortIndex class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="number" placeholder="42"}}
+
+          <button {{action this.createProductGroup this.newProductGroupLabel this.newProductGroupSortIndex}}>Create</button>
         </p>
       {{/animated-if}}      
     </AnimatedContainer>
@@ -35,7 +40,7 @@
       {{#each this.sortedProductGroups as |productGroup|}}
         <LocalVariable as |raised lv|>
           <array.card @raised={{raised}}>
-            <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @expanded={{raised}} />
+            <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @showIndex={{this.editing}} @expanded={{raised}} />
           </array.card>
         </LocalVariable>
       {{/each}}

@@ -31,4 +31,17 @@ export default class ProductGroupsController extends Controller {
   }
 
   transition = fade;
+
+  /* -- Creation -- */
+  @tracked newProductGroupLabel = "";
+  @tracked newProductGroupSortIndex = null;
+
+  @action
+  async createProductGroup( label, sortIndex ) {
+    await this.store.createRecord( 'product-group', { label, sortIndex } ).save();
+    this.setProperties({newProductGroupLabel: "", newProductGroupSortIndex: null});
+    this.send('reloadModel');
+    await wait(500);
+    this.editing = false;
+  }
 }
