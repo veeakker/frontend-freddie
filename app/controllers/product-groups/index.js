@@ -7,7 +7,7 @@ import { fadeIn } from 'ember-animated/motions/opacity';
 import move from 'ember-animated/motions/move';
 import fade from 'ember-animated/transitions/fade';
 
-export default class ProductGroupsController extends Controller {
+export default class ProductGroupsIndexController extends Controller {
   /* -- Sorting -- */
   @tracked sortProperty = 'sortIndex'
   @tracked sortProperties = ['sortIndex', 'label']

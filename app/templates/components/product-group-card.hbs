@@ -108,9 +108,9 @@
           <button {{action (mut this.showProducts) true}} class="btn btn-secondary">
             Show products
           </button>
-          <button class="btn btn-secondary">
+          {{#link-to "product-groups.show" @productGroup class="btn btn-secondary"}}
             Manage products
-          </button>
+          {{/link-to}}
         {{else}}
           <h4 class="mb-4">Products attached to {{@productGroup.label}}</h4>
 

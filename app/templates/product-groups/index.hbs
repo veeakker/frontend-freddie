@@ -1,0 +1,74 @@
+<div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
+  <h1 class="mt-2 mb-2">Product groups management</h1>
+  <p class="mt-2 mb-2">
+    The product groups are the tree in which users can find products.  You can navigate through the products here and add new product groups as needed.  Sorting can be achieved by setting the correct sort index.
+  </p>
+  <p class="mt-2 mb-2">
+    Note that not all views in the webshop may use this sortIndex.  It is rather a way for us in which we could alter the sorting if we find that the default sorting and sorting by name does not yield to the desired results.
+  </p>
+  <p class="mt-2 mb-2">
+    This screen does not include the creation and overview of products, but it will point you to the right location for creating and updating the products themselves.
+  </p>
+</div>
+
+<div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
+  <p>
+    <span class="card-array-label text-lg font-bold">Product Groups</span>
+    <div class="float-right">
+      <button {{action this.toggleEditing}}>
+        {{#animated-if this.editing use=this.transition}}
+          <span class="text-grey-dark">
+            Show
+          </span>
+        {{else}}
+          <span class="text-grey">
+            Edit
+          </span>
+        {{/animated-if}}
+      </button>
+      <SortProperties @properties={{this.sortProperties}} @sort={{this.sortProperty}} @sortAction={{action this.updateSort}} />
+    </div>
+  </p>
+  <div class="overflow-hidden">
+    <AnimatedContainer>
+      {{#animated-if this.editing}}
+        <p class="pt-8">
+          <h4 class="mb-4">Create new</h4>
+          <label>Group name</label>
+          {{input value=this.newProductGroupLabel class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" placeholder="Gevogelte"}}
+          <label>Group index</label>
+          {{input value=this.newProductGroupSortIndex class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="number" placeholder="42"}}
+
+          <button class="mt-4 btn btn-primary" {{action this.createProductGroup this.newProductGroupLabel this.newProductGroupSortIndex}}>Create</button>
+        </p>
+      {{/animated-if}}      
+    </AnimatedContainer>
+  </div>
+  <div class="overflow-hidden">
+    <CardArray @color="dark" as |array|>
+      {{#each this.sortedProductGroups as |productGroup|}}
+        <LocalVariable as |raised lv|>
+          <array.card @raised={{raised}}>
+            <ProductGroupCard @color={{array.nestedColor}} @headerClick={{lv.toggle}} @productGroup={{productGroup}} @showIndex={{this.editing}} @expanded={{raised}} />
+          </array.card>
+        </LocalVariable>
+      {{/each}}
+    </CardArray>
+  </div>
+</div>
+
+<div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
+  <h1 class="mt-2 mb-2">Manage product groups</h1>
+  <p class="my-2">Product groups is the taxonomy in which product groups can be positioned.  This is very folder-structure-like.  We represent them here as cards which you can open to get further details.</p>
+
+  <p class="mt-2 mb-2">
+    Nam libero justo, laoreet sit amet cursus sit amet, dictum sit amet justo? Dolor sit amet, consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula?
+  </p>
+  <p class="mt-2 mb-2">
+    Blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis, bibendum ut tristique et, egestas quis ipsum suspendisse ultrices gravida dictum fusce. Arcu, bibendum at varius vel, pharetra vel.
+  </p>
+  <p class="mt-2 mb-2">
+    Amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed? Cum sociis natoque penatibus et magnis dis parturient montes, nascetur!
+  </p>
+  <p class="mt-2 mb-2">You can configure the product groups here.</p>
+</div>
