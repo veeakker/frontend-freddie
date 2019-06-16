@@ -7,7 +7,7 @@
       <ProductGroups::ParentBreadcrumb @productGroup={{this.model.parentGroup}} as |productGroup|>
         <div class="overflow-x-hidden inline-block">
           <AnimatedContainer @onInitialRender={{true}}>
-            {{#animated-if true use=this.fadeAndScale initialInsertion=true}}
+            {{#animated-if true use=this.crossFade initialInsertion=true}}
               {{link-to productGroup.label "product-groups.show" productGroup class="overflow-x-show no-underline text-grey-darkest"}}
             {{/animated-if}}
           </AnimatedContainer>
@@ -18,7 +18,7 @@
       </ProductGroups::ParentBreadcrumb>
       <div class="overflow-x-hidden inline-block">
         <AnimatedContainer @onInitialRender={{true}}>
-          {{#animated-value this.model.label use=this.fadeAndScale initialInsertion=true as |label|}}
+          {{#animated-value this.model.label use=this.crossFade initialInsertion=true as |label|}}
             <span class="inline-block overflow-x-show">
               {{label}}
             </span>
@@ -30,9 +30,24 @@
 
   <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
     <h2>Products</h2>
+
     <p class="mt-2">
-      This section will contain all products
+      These are the products that match this product group.
     </p>
+
+    <p class="overflow-y-hidden">
+      <AnimatedContainer @onInitialRender={{true}}>
+        <CardArray @color="dark" as |array|>
+          {{#animated-each this.model.products initialInsertion=true use=this.crossFade as |product|}}
+            <array.card>
+              {{product.label}}
+            </array.card>
+          {{/animated-each}}
+        </CardArray>
+      </AnimatedContainer>
+    </p>
+
+    <ProductGroups::ProductManagement @productGroup={{this.model}} />
   </div>
 
   <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
