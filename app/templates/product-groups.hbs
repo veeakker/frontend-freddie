@@ -1,16 +1,14 @@
 <div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
   <h1 class="mt-2 mb-2">Product groups management</h1>
   <p class="mt-2 mb-2">
-    Nam libero justo, laoreet sit amet cursus sit amet, dictum sit amet justo? Dolor sit amet, consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula?
+    The product groups are the tree in which users can find products.  You can navigate through the products here and add new product groups as needed.  Sorting can be achieved by setting the correct sort index.
   </p>
   <p class="mt-2 mb-2">
-    Blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis, bibendum ut tristique et, egestas quis ipsum suspendisse ultrices gravida dictum fusce. Arcu, bibendum at varius vel, pharetra vel.
+    Note that not all views in the webshop may use this sortIndex.  It is rather a way for us in which we could alter the sorting if we find that the default sorting and sorting by name does not yield to the desired results.
   </p>
   <p class="mt-2 mb-2">
-    Amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed? Cum sociis natoque penatibus et magnis dis parturient montes, nascetur!
+    This screen does not include the creation and overview of products, but it will point you to the right location for creating and updating the products themselves.
   </p>
-  <p class="mt-2 mb-2">You can configure the product groups here.</p>
-  
 </div>
 
 <div class="card-view readable-width my-8 pt-4 pb-6 px-4 bg-grey-lighter">
@@ -47,11 +45,11 @@
     </AnimatedContainer>
   </div>
   <div class="overflow-hidden">
-    <CardArray as |array|>
+    <CardArray @color="light" as |array|>
       {{#each this.sortedProductGroups as |productGroup|}}
         <LocalVariable as |raised lv|>
-          <array.card @raised={{raised}}>
-            <ProductGroupCard @headerClick={{lv.toggle}} @productGroup={{productGroup}} @showIndex={{this.editing}} @expanded={{raised}} />
+          <array.card @color="light" @raised={{raised}}>
+            <ProductGroupCard @color="light" @headerClick={{lv.toggle}} @productGroup={{productGroup}} @showIndex={{this.editing}} @expanded={{raised}} />
           </array.card>
         </LocalVariable>
       {{/each}}

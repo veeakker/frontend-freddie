@@ -68,11 +68,11 @@
 
     <div class="overflow-y-hidden">
       <AnimatedContainer>
-        <CardArray as |array|>
+        <CardArray @color={{this.nestedColor}} as |array|>
           {{#animated-each (if @expanded @productGroup.sortedChildren this.emptyArray) use=this.transition as |child|}}
             <LocalVariable @default={{false}} as |openChild lv|>
-              <array.card @raised={{openChild}}>
-                <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} @showIndex={{this.editing}} />
+              <array.card @color={{this.nestedColor}} @raised={{openChild}}>
+                <ProductGroupCard @expanded={{openChild}} @productGroup={{child}} @headerClick={{lv.toggle}} @showIndex={{this.editing}} @color={{this.nestedColor}}/>
               </array.card>
             </LocalVariable>
           {{/animated-each}}
@@ -112,7 +112,7 @@
             Manage products
           </button>
         {{else}}
-          <h4 class="mb-4">Showing products</h4>
+          <h4 class="mb-4">Products attached to {{@productGroup.label}}</h4>
 
           <button {{action (mut this.showProducts) false}} class="btn btn-secondary">
             Hide products

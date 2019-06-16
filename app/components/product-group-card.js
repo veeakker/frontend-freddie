@@ -18,6 +18,19 @@ export default class ProductGroupCardComponent extends Component {
 
   emptyArary = []
 
+  /* -- Colors -- */
+  get nestedColor(){
+    // TODO: move this to the card logic
+    if( this.args.color === "dark" )
+      return "medium";
+    else {
+      if( this.args.color === "medium" )
+        return "light";
+      else
+        return "dark";
+    }
+  }
+
   /* -- Open state -- */
   @tracked isOpen = false
 

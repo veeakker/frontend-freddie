@@ -1,3 +1,3 @@
-<div class="card-array" ...attributes>
-  {{yield (hash card=(component "card-array/card"))}}
+<div class={{this.cardColorClass}} ...attributes>
+  {{yield (hash card=(component "card-array/card" color=@color))}}
 </div>
