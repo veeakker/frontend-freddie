@@ -4,7 +4,27 @@
   <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
     <h2>Parents</h2>
     <p class="mt-2">
-      TODO > add > parents > here
+      <ProductGroups::ParentBreadcrumb @productGroup={{this.model.parentGroup}} as |productGroup|>
+        <div class="overflow-x-hidden inline-block">
+          <AnimatedContainer @onInitialRender={{true}}>
+            {{#animated-if true use=this.fadeAndScale initialInsertion=true}}
+              {{link-to productGroup.label "product-groups.show" productGroup class="overflow-x-show no-underline text-grey-darkest"}}
+            {{/animated-if}}
+          </AnimatedContainer>
+        </div>
+        <div class="overflow-x-hidden inline-block text-grey-dark">
+          &gt;
+        </div>
+      </ProductGroups::ParentBreadcrumb>
+      <div class="overflow-x-hidden inline-block">
+        <AnimatedContainer @onInitialRender={{true}}>
+          {{#animated-value this.model.label use=this.fadeAndScale initialInsertion=true as |label|}}
+            <span class="inline-block overflow-x-show">
+              {{label}}
+            </span>
+          {{/animated-value}}
+        </AnimatedContainer>
+      </div>
     </p>
   </div>
 

@@ -1,0 +1,7 @@
+{{#if @productGroup.parentGroup}}
+  <ProductGroups::ParentBreadcrumb @productGroup={{@productGroup.parentGroup}} as |productGroup|>
+    {{yield productGroup}}
+  </ProductGroups::ParentBreadcrumb>
+{{/if}}
+
+{{yield @productGroup}}
