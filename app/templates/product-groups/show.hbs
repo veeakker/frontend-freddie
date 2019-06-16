@@ -1,1 +1,26 @@
-{{outlet}}
+<div class="card-view readable-width my-8 pt-4 pb-6 px-4">
+  <h1>Product group {{this.model.label}}</h1>
+
+  <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
+    <h2>Parents</h2>
+    <p class="mt-2">
+      TODO > add > parents > here
+    </p>
+  </div>
+
+  <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
+    <h2>Products</h2>
+    <p class="mt-2">
+      This section will contain all products
+    </p>
+  </div>
+
+  <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
+    <h2>Promoted products</h2>
+    <p class="mt-2">
+      This section will contain the promoted products
+    </p>
+  </div>
+
+  {{outlet}}
+</div>
