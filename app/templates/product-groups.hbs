@@ -45,11 +45,11 @@
     </AnimatedContainer>
   </div>
   <div class="overflow-hidden">
-    <CardArray @color="light" as |array|>
+    <CardArray @color="dark" as |array|>
       {{#each this.sortedProductGroups as |productGroup|}}
         <LocalVariable as |raised lv|>
-          <array.card @color="light" @raised={{raised}}>
-            <ProductGroupCard @color="light" @headerClick={{lv.toggle}} @productGroup={{productGroup}} @showIndex={{this.editing}} @expanded={{raised}} />
+          <array.card @raised={{raised}}>
+            <ProductGroupCard @color={{array.nestedColor}} @headerClick={{lv.toggle}} @productGroup={{productGroup}} @showIndex={{this.editing}} @expanded={{raised}} />
           </array.card>
         </LocalVariable>
       {{/each}}

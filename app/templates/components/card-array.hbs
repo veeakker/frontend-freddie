@@ -1,3 +1,5 @@
 <div class={{this.cardColorClass}} ...attributes>
-  {{yield (hash card=(component "card-array/card" color=@color))}}
+  {{yield (hash
+    card=(component "card-array/card" color=this.nestedColor)
+    nestedColor=this.nestedColor)}}
 </div>
