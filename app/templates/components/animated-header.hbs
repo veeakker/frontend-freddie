@@ -1,0 +1,7 @@
+<AnimatedContainer>
+  {{#animated-if @expanded use=this.headerTransition}}
+    <h1 class="inline-block cursor-pointer" {{action @onClick}}>{{@label}} {{yield}}</h1>
+  {{else}}
+    <span class="inline-block cursor-pointer" {{action @onClick}}>{{@label}} {{yield}}</span>
+  {{/animated-if}}
+</AnimatedContainer>
