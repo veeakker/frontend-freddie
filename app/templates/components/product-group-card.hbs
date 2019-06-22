@@ -1,15 +1,13 @@
 <div class="overflow-y-hidden">
   <AnimatedContainer>
-    <AnimatedContainer class="mr-10">
-      {{#animated-if (not @expanded) use=this.headerTransition}}
-        <p class="inline-block cursor-pointer" onClick={{@headerClick}}>
-          {{@productGroup.label}}
-          {{#animated-if @showIndex use=this.transition}}<span class="text-grey-dark">[Index {{@productGroup.sortIndex}}]</span>{{/animated-if}}
-        </p>
-      {{else}}
-        <h1 class="inline-block cursor-pointer" onClick={{@headerClick}}>{{@productGroup.label}}</h1>
+    <AnimatedHeader class="mr-10"
+      @large={{@expanded}}
+      @onClick={{@headerClick}}
+      @label={{@productGroup.label}}>
+      {{#animated-if @showIndex use=this.transition}}
+        <span class="text-grey-dark">[Index {{@productGroup.sortIndex}}]</span>
       {{/animated-if}}
-    </AnimatedContainer>
+    </AnimatedHeader>
 
     {{#animated-if @expanded}}
       <div class="float-right -mt-6">
