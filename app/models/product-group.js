@@ -15,4 +15,10 @@ export default class ProductGroupModel extends Model {
   get sortedChildren() {
     return (this.childGroups || []).sortBy('sortIndex');
   }
+
+  // TODO: This does not always recompute.  Figure out solution
+  @computed('products.@each.sortIndex')
+  get sortedProducts() {
+    return (this.products || []).sortBy('sortIndex');
+  }
 }

@@ -38,7 +38,7 @@
     <p class="overflow-y-hidden">
       <AnimatedContainer @onInitialRender={{true}}>
         <CardArray @color="dark" as |array|>
-          {{#animated-each this.model.products initialInsertion=true use=this.crossFade as |product|}}
+          {{#animated-each this.model.sortedProducts initialInsertion=true use=this.crossFade as |product|}}
             <LocalVariable as |raised lv|>
               <Products::Card
                 @card={{component array.card raised=raised}}
