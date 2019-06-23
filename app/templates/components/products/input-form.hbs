@@ -7,6 +7,14 @@
     Sort index
     {{input class="input-value" value=@product.sortIndex type="number" placeholder=42}}
   </label>
+  <label class="input-label">
+    Target unit
+    <Common::QuantitativeValueInput @value={{@product.targetUnit}} />
+  </label>
+  <label class="input-label">
+    Unit price
+    <Common::UnitPriceSpecification @value={{@product.unitPrice}} />
+  </label>
 
   {{yield this.submit}}
 </form>

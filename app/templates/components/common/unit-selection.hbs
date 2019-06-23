@@ -1,0 +1,6 @@
+{{#each this.unitArray as |unit|}}
+  <button class={{concat "inline-block btn " (if (eq @selected unit) "btn-primary" "btn-secondary")}} {{action @update unit}}>
+    {{get this.units unit}}
+  </button>
+{{/each}}
+

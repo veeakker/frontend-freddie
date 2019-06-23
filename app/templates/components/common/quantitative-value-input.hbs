@@ -1,0 +1,6 @@
+<span class="input-value">
+  {{input value=this.amount type="number"}}
+  <Common::UnitSelection @selected={{this.selectedUnit}} @update={{this.updateSelectedUnit}} />
+</span>
+
+{{yield}}
