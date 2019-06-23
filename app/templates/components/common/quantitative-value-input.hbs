@@ -1,6 +1,6 @@
 <span class="input-value">
-  {{input value=this.amount type="number"}}
-  <Common::UnitSelection @selected={{this.selectedUnit}} @update={{this.updateSelectedUnit}} />
+  {{input value=@value.value type="number" step="0.01"}}
+  <Common::UnitSelection @selected={{@value.unit}} @update={{this.updateSelectedUnit}} />
 </span>
 
 {{yield}}

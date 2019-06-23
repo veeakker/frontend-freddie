@@ -11,12 +11,15 @@ export default class CommonQuantitativeValueInputComponent extends Component {
 
   @action
   updateSelectedUnit( unit ) {
-    this.selectedUnit = unit;
+    const quantitativeValue = this.args.value;
+
+    quantitativeValue.unit = unit;
+
     if( unit == "C62" )
-      this.amount = 1;
+      quantitativeValue.value = 1;
     if( unit == "GRM" )
-      this.amount = 100;
+      quantitativeValue.value = 100;
     if( unit == "KGM" )
-      this.amount = 1;
+      quantitativeValue.value = 1;
   }
 }
