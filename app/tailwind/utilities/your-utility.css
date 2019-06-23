@@ -57,7 +57,7 @@
 }
 
 .input-label {
-  @apply mx-2;
+  @apply mx-2 font-bold text-grey-dark;
 }
 
 .input-value {

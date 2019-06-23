@@ -11,7 +11,6 @@ export default class ProductsCardComponent extends Component {
     await product.save();
     await (await product.unitPrice).save();
     await (await product.targetUnit).save();
-    console.log('saved it all');
   }
 
   get shouldSave(){
