@@ -1,0 +1,32 @@
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+
+.btn-primary {
+  @apply bg-green-lighter text-green;
+}
+.btn-primary:hover {
+  @apply bg-green text-white;
+}
+
+.btn-secondary {
+  @apply bg-grey-lighter text-grey;
+}
+.btn-secondary:hover {
+  @apply bg-grey text-grey-darkest;
+}
+
+.btn-no {
+  @apply bg-orange-lighter text-grey;
+}
+.btn-no:hover {
+  @apply bg-orange text-white;
+}
+
+.btn-alarm {
+  @apply bg-red-lighter text-red;
+}
+
+.btn-alarm:hover {
+  @apply bg-red text-white;
+}

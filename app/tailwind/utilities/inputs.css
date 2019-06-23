@@ -1,0 +1,11 @@
+.input-label {
+  @apply mx-2 font-bold text-grey-dark;
+}
+
+.input-value {
+  @apply mx-2 bg-white border rounded-lg py-2 px-4 block w-full appearance-none leading-normal;
+}
+
+.input-value:focus {
+  @apply shadow-outline;
+}
