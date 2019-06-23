@@ -6,7 +6,7 @@
       {{/if}}
       {{#if (eq state "makingNew")}}
         {{!-- Creating new item --}}
-        <ProductGroups::ProductManagement::NewProductForm @product={{this.product}} @onSubmit={{action this.createProduct}} />
+        <Products::InputForm @product={{this.product}} @submit={{action this.createProduct}} />
       {{/if}}
       {{#if (eq state "addingExisting")}}
         {{!-- Adding existing item --}}
