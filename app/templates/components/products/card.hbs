@@ -3,20 +3,11 @@
 
   <AnimatedContainer>
     {{#animated-if @expanded use=this.transition}}
-      <form {{on "submit" (fn this.updateProduct)}}>
-        <label class="input-label">
-          Label
-          {{input class="input-value" value=@product.label placeholder="Gezouten spek"}}
-        </label>
-        <label class="input-label">
-          Sort index
-          {{input class="input-value" value=@product.sortIndex type="number" placeholder=42}}
-        </label>
-
+      <Products::InputForm @product={{@product}} @submit={{action this.saveProduct}}>
         {{#animated-if @product.hasDirtyAttributes use=this.transition}}
           <button type="submit" class="btn btn-primary">Save</button>
         {{/animated-if}}
-      </form>
+      </Products::InputForm>
     {{/animated-if}}
   </AnimatedContainer>
 </@card>

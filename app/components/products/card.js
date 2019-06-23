@@ -6,9 +6,7 @@ export default class ProductsCardComponent extends Component {
   transition = fade
 
   @action
-  updateProduct(event){
-    event.preventDefault();
-
+  saveProduct(event){
     this.args.product.save();
   }
 }

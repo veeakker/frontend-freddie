@@ -1,0 +1,12 @@
+<form {{on "submit" (fn this.submit)}}>
+  <label class="input-label">
+    Label
+    {{input class="input-value" value=@product.label placeholder="Gezouten spek"}}
+  </label>
+  <label class="input-label">
+    Sort index
+    {{input class="input-value" value=@product.sortIndex type="number" placeholder=42}}
+  </label>
+
+  {{yield this.submit}}
+</form>
