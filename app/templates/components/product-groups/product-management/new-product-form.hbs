@@ -1,0 +1,10 @@
+<span class="font-bold mt-4">Enter new product details here</span>
+
+<form>
+  <label class="input-label">label</label>
+  <input class="input-value" value={{@product.label}} {{on "change" (action "updateLabel")}} placeholder="Gemengd gehakt">
+  <label>sortIndex</label>
+  <input class="input-value" value={{@product.sortIndex}} {{on "change" (action "updateSortIndex")}} placeholder="42" type="number">
+</form>
+
+{{yield}}

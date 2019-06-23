@@ -39,9 +39,13 @@
       <AnimatedContainer @onInitialRender={{true}}>
         <CardArray @color="dark" as |array|>
           {{#animated-each this.model.products initialInsertion=true use=this.crossFade as |product|}}
-            <array.card>
-              {{product.label}}
-            </array.card>
+            <LocalVariable as |raised lv|>
+              <Products::Card
+                @card={{component array.card raised=raised}}
+                @headerClick={{lv.toggle}}
+                @product={{product}}
+                @expanded={{raised}} />
+            </LocalVariable>
           {{/animated-each}}
         </CardArray>
       </AnimatedContainer>
