@@ -1,3 +1,22 @@
 <@card>
   <AnimatedHeader @label={{@product.label}} @onClick={{@headerClick}} @large={{@expanded}} />
+
+  <AnimatedContainer>
+    {{#animated-if @expanded use=this.transition}}
+      <form {{on "submit" (fn this.updateProduct)}}>
+        <label class="input-label">
+          Label
+          {{input class="input-value" value=@product.label placeholder="Gezouten spek"}}
+        </label>
+        <label class="input-label">
+          Sort index
+          {{input class="input-value" value=@product.sortIndex type="number" placeholder=42}}
+        </label>
+
+        {{#animated-if @product.hasDirtyAttributes use=this.transition}}
+          <button type="submit" class="btn btn-primary">Save</button>
+        {{/animated-if}}
+      </form>
+    {{/animated-if}}
+  </AnimatedContainer>
 </@card>
