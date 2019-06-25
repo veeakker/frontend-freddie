@@ -1,3 +1,4 @@
+import { set } from '@ember/object';
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 
@@ -13,23 +14,20 @@ export default class CommonQuantitativeValueInputComponent extends Component {
     else
       value = parseInt( stringValue );
 
-    if ( this.args.value.set )
-      this.args.value.set('value', value);
-    else
-      this.args.value.value = value;
+    set( this, 'args.value.value', value );
   }
 
   @action
   updateSelectedUnit( unit ) {
     const quantitativeValue = this.args.value;
 
-    quantitativeValue.set('unit', unit);
+    set(quantitativeValue, 'unit', unit);
 
     if( unit == "C62" )
-      quantitativeValue.set('value', 1);
+      set(quantitativeValue, 'value', 1);
     if( unit == "GRM" )
-      quantitativeValue.set('value', 100);
+      set(quantitativeValue, 'value', 100);
     if( unit == "KGM" )
-      quantitativeValue.set('value', 1);
+      set(quantitativeValue, 'value', 1);
   }
 }
