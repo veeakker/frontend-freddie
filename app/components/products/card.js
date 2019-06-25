@@ -98,6 +98,18 @@ export default class ProductsCardComponent extends Component {
     await offering.save();
   }
 
+  @action
+  async updatePrices(){
+    let productUnitPrice = await this.args.product.unitPrice;
+    let productTargetUnit = await this.args.product.targetUnit;
+    let offerings = await this.args.product.offerings;
+    offerings.forEach( async (offering) => {
+      await offering.unitPrice;
+      await offering.typeAndQuantity;
+      offering.calculatePricingSync( this.args.product );
+    } );
+  }
+
   get shouldSave(){
     const product = this.args.product;
 

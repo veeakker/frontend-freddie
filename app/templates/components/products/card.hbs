@@ -34,7 +34,7 @@
 
         <button type="button" {{on "click" (fn this.createOffering)}} class="btn btn-secondary">Add offering</button>
 
-        <button type="button">Update prices</button>
+        <button type="button" {{on "click" (fn this.updatePrices)}}>Update prices</button>
 
         {{#animated-if this.shouldSave use=this.transition}}
           <div>
