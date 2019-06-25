@@ -56,6 +56,10 @@ export default class ProductsCardComponent extends Component {
     });
   }
 
+  get orderedOfferings() {
+    return this.args.product.get('offerings').sortBy('typeAndQuantity.value');
+  }
+
   @action
   async saveProduct(){
     const product = this.args.product;
