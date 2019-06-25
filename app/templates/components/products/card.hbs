@@ -17,7 +17,7 @@
             <Common::UnitPriceSpecification @value={{offering.unitPrice}} />
           </label>
           {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes)}}
-            <button class="btn-primary" role="button" {{on "click" (fn this.updateOffering offering)}}>Update</button>
+            <button class="btn btn-primary" role="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
           {{/animated-if}}
         {{/each}}
 
@@ -34,7 +34,7 @@
 
         <button type="button" {{on "click" (fn this.createOffering)}} class="btn btn-secondary">Add offering</button>
 
-        <button>Update prices</button>
+        <button type="button">Update prices</button>
 
         {{#animated-if this.shouldSave use=this.transition}}
           <div>

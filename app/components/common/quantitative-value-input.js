@@ -5,10 +5,18 @@ export default class CommonQuantitativeValueInputComponent extends Component {
   @action
   updateValue(event){
     const stringValue = event.target.value || "0";
-    if( this.args.value.unit == "KGM" )
-      this.args.value.value = parseFloat( stringValue );
+    let value = null;
+    const unit = this.args.value.get ? this.args.value.get('unit') : this.args.value.unit;
+
+    if( unit == "KGM" )
+      value = parseFloat( stringValue );
     else
-      this.args.value.value = parseInt( stringValue );
+      value = parseInt( stringValue );
+
+    if ( this.args.value.set )
+      this.args.value.set('value', value);
+    else
+      this.args.value.value = value;
   }
 
   @action

@@ -91,6 +91,13 @@ export default class ProductsCardComponent extends Component {
     this.resetTempOffering();
   }
 
+  @action
+  async updateOffering(offering){
+    await (await offering.unitPrice).save();
+    await (await offering.typeAndQuantity).save();
+    await offering.save();
+  }
+
   get shouldSave(){
     const product = this.args.product;
 
