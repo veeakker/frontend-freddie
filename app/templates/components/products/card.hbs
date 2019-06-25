@@ -4,6 +4,38 @@
   <AnimatedContainer>
     {{#animated-if @expanded use=this.transition}}
       <Products::InputForm @product={{@product}} @submit={{action this.saveProduct}}>
+
+        <div class="font-bold mt-2 mb-1 ml-2">Offerings</div>
+
+        {{#each @product.offerings as |offering|}}
+          <label class="block">
+            <span class="input-label">Offered amount</span>
+            <Common::QuantitativeValueInput @value={{offering.typeAndQuantity}} />
+          </label>
+          <label class="block">
+            <span class="input-label">Price for package</span>
+            <Common::UnitPriceSpecification @value={{offering.unitPrice}} />
+          </label>
+          {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes)}}
+            <button class="btn-primary" role="button" {{on "click" (fn this.updateOffering offering)}}>Update</button>
+          {{/animated-if}}
+        {{/each}}
+
+        <div class="font-bold mt-2 mb-1 ml-2">Add offering</div>
+
+        <label class="block">
+          <span class="input-label">Offered amount</span>
+          <Common::QuantitativeValueInput @value={{this.tempOffering.typeAndQuantity}} />
+        </label>
+        <label class="block">
+          <span class="input-label">Price for package</span>
+          <Common::UnitPriceSpecification @value={{this.tempOffering.unitPrice}} />
+        </label>
+
+        <button type="button" {{on "click" (fn this.createOffering)}} class="btn btn-secondary">Add offering</button>
+
+        <button>Update prices</button>
+
         {{#animated-if this.shouldSave use=this.transition}}
           <div>
             <button type="submit" class="btn btn-primary">Save</button>

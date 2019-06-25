@@ -1,3 +1,5 @@
-{{input value=@value.value type="number" step="0.01"}}
-EUR
-per <Common::UnitSelection @update={{mut @value.unit}} @selected={{@value.unit}} />
+<span class="input-value">
+  <input {{on "change" (fn this.updateValue)}} value={{@value.value}} type="number" step="0.01" />
+  EUR
+  per <Common::UnitSelection @update={{mut @value.unit}} @selected={{@value.unit}} />
+</span>

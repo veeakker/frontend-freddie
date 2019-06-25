@@ -1,5 +1,5 @@
 <span class="input-value">
-  {{input value=@value.value type="number" step="0.01"}}
+  <input {{on "change" (fn this.updateValue)}} value={{@value.value}} type="number" step={{if (eq @value.unit "KGM") "0.01" "1"}} />
   <Common::UnitSelection @selected={{@value.unit}} @update={{this.updateSelectedUnit}} />
 </span>
 

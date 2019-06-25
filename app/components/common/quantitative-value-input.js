@@ -3,6 +3,15 @@ import Component from '@glimmer/component';
 
 export default class CommonQuantitativeValueInputComponent extends Component {
   @action
+  updateValue(event){
+    const stringValue = event.target.value || "0";
+    if( this.args.value.unit == "KGM" )
+      this.args.value.value = parseFloat( stringValue );
+    else
+      this.args.value.value = parseInt( stringValue );
+  }
+
+  @action
   updateSelectedUnit( unit ) {
     const quantitativeValue = this.args.value;
 
