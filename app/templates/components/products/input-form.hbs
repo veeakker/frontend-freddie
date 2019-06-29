@@ -7,6 +7,19 @@
     Sort index
     {{input class="input-value" value=@product.sortIndex type="number" placeholder=42}}
   </label>
+  <label class="input-label" >
+    Thumbnail
+    <FileUpload
+      @name="photos"
+      @accept="image/*"
+      @multiple={{false}}
+      @onfileadd={{action this.uploadThumbnail}}>
+      <span class="btn btn-secondary">Add a tumbnail</span>
+    </FileUpload>
+    {{#if @product.thumbnail.downloadUrl}}
+      <img class="w-10" src={{@product.thumbnail.downloadUrl}} alt="product thumbnail" />
+    {{/if}}
+  </label>
 
   <div class="font-bold mt-2 mb-1 ml-2">Pricing info</div>
 

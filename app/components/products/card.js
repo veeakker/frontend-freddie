@@ -118,6 +118,7 @@ export default class ProductsCardComponent extends Component {
     const product = this.args.product;
 
     return product.get('hasDirtyAttributes')
+      || product.get('hasDirtyRelationships')
       || product.get('unitPrice.hasDirtyAttributes')
       || product.get('targetUnit.hasDirtyAttributes');
   }
