@@ -11,3 +11,5 @@ RUN DEPLOY_ENV=production ember build -prod
 FROM semtech/ember-proxy-service:1.4.0
 
 COPY --from=builder /app/dist /app
+
+COPY ./proxy/file-upload.conf /config/file-upload.conf
