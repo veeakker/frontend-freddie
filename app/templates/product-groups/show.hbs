@@ -8,7 +8,7 @@
         <div class="overflow-x-hidden inline-block">
           <AnimatedContainer @onInitialRender={{true}}>
             {{#animated-if true use=this.crossFade initialInsertion=true}}
-              {{link-to productGroup.label "product-groups.show" productGroup class="overflow-x-show no-underline text-grey-darkest"}}
+              <LinkTo @route="product-groups.show" @model={{productGroup}} class="overflow-x-show no-underline text-grey-darkest">{{productGroup.label}}</LinkTo>
             {{/animated-if}}
           </AnimatedContainer>
         </div>

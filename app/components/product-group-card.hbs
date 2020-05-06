@@ -38,7 +38,7 @@
             <p class="pt-8 pr-3 pb-2">
               <h4 class="mb-4">Update current</h4>
               <label class="input-label">Group name</label>
-              {{input value=@productGroup.label class="input-value" placeholder="Gevogelte"}}
+              <Input @value={{@productGroup.label}} class="input-value" placeholder="Gevogelte" />
               <label class="input-label">Group index</label>
               <input class="input-value" value={{@productGroup.sortIndex}} {{on "change" (action "updateSortIndex")}} placeholder="42" type="number">
             </p>
@@ -90,9 +90,9 @@
           <p class="pt-8 pr-3 pb-2">
             <h4 class="mb-4">Add new child</h4>
             <label class="input-label">Group name</label>
-            {{input value=this.newProductGroupLabel class="input-value" placeholder="Gevogelte"}}
+            <Input @value={{this.newProductGroupLabel}} class="input-value" placeholder="Gevogelte" />
             <label class="input-label">Group index</label>
-            {{input value=this.newProductGroupSortIndex class="input-value" placeholder="42" type="number"}}
+            <Input @value={{this.newProductGroupSortIndex}} class="input-value" placeholder="42" @type="number" />
           </p>
           <button {{action this.createChild this.newProductGroupLabel this.newProductGroupSortIndex}} class="btn btn-primary">Create</button>
           <button {{action (mut this.addingChild false)}} class="btn btn-no">Cancel</button>
@@ -106,9 +106,9 @@
           <button {{action (mut this.showProducts) true}} class="btn btn-secondary">
             Show products
           </button>
-          {{#link-to "product-groups.show" @productGroup class="btn btn-secondary"}}
+          <LinkTo @route="product-groups.show" @model={{@productGroup}} class="btn btn-secondary">
             Manage products
-          {{/link-to}}
+          </LinkTo>
         {{else}}
           <h4 class="mb-4">Products attached to {{@productGroup.label}}</h4>
 

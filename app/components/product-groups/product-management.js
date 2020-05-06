@@ -7,33 +7,25 @@ import crossFade from 'frontend-freddie/utils/transitions/cross-fade';
 import { crossFadeAndMatch } from 'frontend-freddie/utils/transitions/cross-fade';
 
 class TempUnitPriceSpecification {
-  @tracked
-  unit = "GMS";
+  @tracked unit = "GMS";
 
-  @tracked
-  value = undefined;
+  @tracked value = undefined;
 }
 
 class TempQuantVal {
-  @tracked
-  unit = "GMS";
+  @tracked unit = "GMS";
 
-  @tracked
-  value = undefined;
+  @tracked value = undefined;
 }
 
 class TempProduct {
-  @tracked
-  label = ""
+  @tracked label = ""
 
-  @tracked
-  sortIndex = 0
+  @tracked sortIndex = 0
 
-  @tracked
-  priceSpecification = null
+  @tracked priceSpecification = null
 
-  @tracked
-  targetUnit = null
+  @tracked targetUnit = null
 
   constructor( { label, sortIndex } ){
     this.label = label;
@@ -49,11 +41,9 @@ export default class ProductGroupsProductManagementComponent extends Component {
   crossFadeAndMatch = crossFadeAndMatch
   transition=fade
 
-  @tracked
-  state = "init"
+  @tracked state = "init"
 
-  @tracked
-  product = null
+  @tracked product = null
 
   constructor() {
     super(...arguments);

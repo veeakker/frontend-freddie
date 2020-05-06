@@ -13,7 +13,7 @@ export default class ProductGroupsIndexController extends Controller {
   @tracked sortProperties = ['sortIndex', 'label']
 
   get sortedProductGroups() {
-    return this.get('model').sortBy(this.sortProperty);
+    return this.model.sortBy(this.sortProperty);
   }
 
   @action
@@ -22,8 +22,7 @@ export default class ProductGroupsIndexController extends Controller {
   }
 
   /* -- Editing -- */
-  @tracked
-  editing = false
+  @tracked editing = false
 
   @action
   toggleEditing() {

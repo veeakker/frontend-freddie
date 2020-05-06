@@ -6,11 +6,9 @@ import Component from '@glimmer/component';
 import fade from 'ember-animated/transitions/fade';
 
 class TempOffering {
-  @tracked
-  unitPrice = null;
+  @tracked unitPrice = null;
 
-  @tracked
-  typeAndQuantity = null;
+  @tracked typeAndQuantity = null;
 
   constructor( { unitPrice, typeAndQuantity } = {} ) {
     this.unitPrice = unitPrice;
@@ -19,11 +17,9 @@ class TempOffering {
 }
 
 class TempOfferingValue {
-  @tracked
-  value = null;
+  @tracked value = null;
 
-  @tracked
-  unit = null;
+  @tracked unit = null;
 
   constructor( { value, unit } = {} ) {
     value = value;
@@ -40,8 +36,7 @@ export default class ProductsCardComponent extends Component {
 
   @service store
 
-  @tracked
-  tempOffering = null
+  @tracked tempOffering = null
 
   constructor(){
     super(...arguments);

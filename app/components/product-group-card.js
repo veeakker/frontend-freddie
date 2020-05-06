@@ -24,8 +24,7 @@ export default class ProductGroupCardComponent extends Component {
 
   /* -- editing state -- */
 
-  @tracked
-  editing = false;
+  @tracked editing = false;
 
   @action
   toggleEditing(){
@@ -57,12 +56,9 @@ export default class ProductGroupCardComponent extends Component {
   }
 
   /* -- creation functionality -- */
-  @tracked
-  addingChild = false;
-  @tracked
-  newProductGroupLabel = null;
-  @tracked
-  newProductGroupSortIndex = null;
+  @tracked addingChild = false;
+  @tracked newProductGroupLabel = null;
+  @tracked newProductGroupSortIndex = null;
 
   @action
   async createChild( label, sortIndex ) {
@@ -83,6 +79,5 @@ export default class ProductGroupCardComponent extends Component {
   }
 
   /* -- showing products -- */
-  @tracked
-  showProducts = false;
+  @tracked showProducts = false;
 }

@@ -12,7 +12,7 @@ module('Integration | Component | product-groups/product-management/select-produ
 
     await render(hbs`{{product-groups/product-management/select-product}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | product-groups/product-management/select-produ
       {{/product-groups/product-management/select-product}}
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).hasText('template block text');
   });
 });

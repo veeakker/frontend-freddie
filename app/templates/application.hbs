@@ -1,9 +1,9 @@
 <AnimatedTools />
 <div class="limit-width">
   <Navbar as |nav|>
-    {{link-to "Product Groups" "product-groups" class=nav.styleClass}}
-    {{link-to "Examples" "index" class=nav.styleClass}}
-    {{link-to "Blog" "index" class=nav.styleClass}}
+    <LinkTo @route="product-groups" class={{nav.styleClass}}>Product Groups</LinkTo>
+    <LinkTo @route="index" class={{nav.styleClass}}>Examples</LinkTo>
+    <LinkTo @route="index" class={{nav.styleClass}}>Blog</LinkTo>
   </Navbar>
 
   {{outlet}}

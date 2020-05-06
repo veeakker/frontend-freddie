@@ -1,15 +1,15 @@
 <form {{on "submit" (fn this.submit)}}>
   <label class="input-label">
     Label
-    {{input class="input-value" value=@product.label placeholder="Gezouten spek"}}
+    <Input class="input-value" @value={{@product.label}} placeholder="Gezouten spek" />
   </label>
   <label class="input-label">
     Subtext
-    {{input class="input-value" value=@product.altLabel placeholder="Salty bacon"}}
+    <Input class="input-value" @value={{@product.altLabel}} placeholder="Salty bacon" />
   </label>
   <label class="input-label">
     Sort index
-    {{input class="input-value" value=@product.sortIndex type="number" placeholder=42}}
+    <Input class="input-value" @value={{@product.sortIndex}} @type="number" placeholder={{42}} />
   </label>
   <label class="input-label" >
     Thumbnail
