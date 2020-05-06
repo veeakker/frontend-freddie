@@ -31,12 +31,12 @@
 
   <label class="block mb-1">
     <div class="input-label">Unit price:</div>
-    <Common::UnitPriceSpecification @value={{@product.unitPrice}} />
+    <Common::UnitPriceSpecification @value={{@product.ensuredUnitPrice}} />
   </label>
 
   <label class="mb-1 block">
     <div class="input-label">Target unit:</div>
-    <Common::QuantitativeValueInput @value={{@product.targetUnit}} />
+    <Common::QuantitativeValueInput @value={{@product.ensuredTargetUnit}} />
   </label>
 
   {{yield this.submit}}
