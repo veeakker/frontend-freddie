@@ -1,6 +1,6 @@
 <div class="overflow-y-hidden">
   <AnimatedContainer>
-    <AnimatedHeader class="mr-10"
+    <AnimatedHeader class="mr-20"
       @large={{@expanded}}
       @onClick={{@headerClick}}
       @label={{@productGroup.label}}>
@@ -11,14 +11,14 @@
 
     {{#animated-if @expanded}}
       <div class="float-right -mt-6">
-        <button {{action this.toggleEditing}}>
+        <button type="button" {{action this.toggleEditing}}>
           {{#animated-if this.editing use=this.transition}}
             <span class="text-grey-dark cursor-pointer">
               Show
             </span>
           {{else}}
             <span class="text-grey cursor-pointer">
-              Edit
+              <LinkTo class="text-grey" @route="product-groups.show" @model={{@productGroup}}>Products</LinkTo> | Edit
             </span>
           {{/animated-if}}
         </button>
@@ -46,8 +46,8 @@
 
           {{#animated-if @productGroup.hasDirtyAttributes use=this.transition}}
             <div class="my-4">
-              <button class="btn btn-primary" {{action this.update}}>Update</button>
-              <button class="btn btn-no" {{action this.undo}}>Undo</button>
+              <button type="button" class="btn btn-primary" {{action this.update}}>Update</button>
+              <button type="button" class="btn btn-no" {{action this.undo}}>Undo</button>
             </div>
           {{/animated-if}}
         </AnimatedContainer>
@@ -55,7 +55,7 @@
     {{/animated-if}}
 
     {{#animated-if (and this.editing (eq @productGroup.sortedChildren.length 0))}}
-      <button class="btn btn-alarm" {{action this.remove}}>Remove</button>
+      <button type="button" class="btn btn-alarm" {{action this.remove}}>Remove</button>
     {{/animated-if}}
 
     <AnimatedContainer>
@@ -85,7 +85,7 @@
     <AnimatedContainer>
       {{#animated-if (and this.editing @expanded) use=this.transition}}
         {{#animated-if (not this.addingChild)}}
-          <button {{action (mut this.addingChild) true}} class="btn btn-secondary">Add child</button>
+          <button type="button" {{action (mut this.addingChild) true}} class="btn btn-secondary">Add child</button>
         {{else}}
           <p class="pt-8 pr-3 pb-2">
             <h4 class="mb-4">Add new child</h4>
@@ -99,29 +99,5 @@
         {{/animated-if}}
       {{/animated-if}}
     </AnimatedContainer>
-
-    <AnimatedContainer>
-      {{#animated-if @expanded use=this.transition}}
-        {{#animated-if (not this.showProducts) use=this.transition}}
-          <button {{action (mut this.showProducts) true}} class="btn btn-secondary">
-            Show products
-          </button>
-          <LinkTo @route="product-groups.show" @model={{@productGroup}} class="btn btn-secondary">
-            Manage products
-          </LinkTo>
-        {{else}}
-          <h4 class="mb-4">Products attached to {{@productGroup.label}}</h4>
-
-          <button {{action (mut this.showProducts) false}} class="btn btn-secondary">
-            Hide products
-          </button>
-
-          <button class="btn btn-secondary">
-            Manage products
-          </button>
-        {{/animated-if}}
-      {{/animated-if}}
-    </AnimatedContainer>
-
   </AnimatedContainer>
 </div>
