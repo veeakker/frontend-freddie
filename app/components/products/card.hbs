@@ -14,19 +14,21 @@
         <div class="font-bold mt-2 mb-1 ml-2">Offerings</div>
 
         {{#each this.orderedOfferings as |offering|}}
-          <label class="block">
-            <span class="input-label">Offered amount</span>
-            <Common::QuantitativeValueInput @value={{offering.typeAndQuantity}} />
-          </label>
-          <label class="block">
-            <span class="input-label">Price for package</span>
-            <Common::UnitPriceSpecification @value={{offering.unitPrice}} />
-          </label>
-          <AnimatedContainer class="overflow-hidden">
-            {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes) use=this.transition}}
-              <button class="btn btn-primary" role="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
-            {{/animated-if}}
-          </AnimatedContainer>
+          <div class="pb-2 pt-2 mt-3 mb-3 border rounded border-transparent hover:border-grey">
+            <label class="block">
+              <span class="input-label">Offered amount</span>
+              <Common::QuantitativeValueInput @value={{offering.typeAndQuantity}} />
+            </label>
+            <label class="block">
+              <span class="input-label">Price for package</span>
+              <Common::UnitPriceSpecification @value={{offering.unitPrice}} />
+            </label>
+            <AnimatedContainer class="overflow-hidden">
+              {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes) use=this.transition}}
+                <button class="btn btn-primary" role="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
+              {{/animated-if}}
+            </AnimatedContainer>
+          </div>
         {{/each}}
 
         <div class="font-bold mt-2 mb-1 ml-2">Add offering</div>

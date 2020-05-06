@@ -5,3 +5,7 @@ body {
   @extend .font-sans;
   @extend .text-grey-darkest;
 }
+
+* {
+  transition: border-color 0.5s ease-out;
+}
