@@ -9,20 +9,30 @@ import { get, set } from '@ember/object';
  */
 export default function decoratorsFetchProp(property, kind) {
   return function( target, name, descriptor ) {
-    let that;
+    const {
+      configurable,
+      enumerable,
+      value,
+      initializer
+    } = descriptor;
 
-    const originalGetter = () => get( that, property );
+    const intialValue = initializer ? initializer.call( this ) : value;
 
     const fetchProperty = async function(){
-      if( ! await originalGetter() ){
-        set( that, property, that.store.createRecord( kind ) );
-      }
+      if( ! await get( this, property ) )
+        set( this, property, this.store.createRecord( kind ) );
     };
 
-    descriptor.get = function() {
-      that = this;
-      fetchProperty();
-      return originalGetter();
+    return {
+      configurable,
+      enumerable,
+      get() {
+        fetchProperty.bind(this)();
+        return get( this, property );
+      },
+      set(value) {
+        set( this, property, value );
+      }
     };
   };
 }
