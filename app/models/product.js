@@ -17,8 +17,8 @@ export default class ProductModel extends Model {
 
   hasDirtyRelationships = false;
 
-  @fetchProp( "unitPrice", "unit-price-specification" ) get ensuredUnitPrice(){};
-  @fetchProp( "targetUnit", "quantitative-value" ) get ensuredTargetUnit(){};
+  @fetchProp( "unitPrice", "unit-price-specification" ) ensuredUnitPrice;
+  @fetchProp( "targetUnit", "quantitative-value" ) ensuredTargetUnit;
 
   async save(){
     await super.save();
