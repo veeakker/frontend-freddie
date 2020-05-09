@@ -1,9 +1,9 @@
 .input-label {
-  @apply mx-2 font-bold text-grey-dark;
+  @apply block mt-1 mx-2 font-bold text-grey-dark pt-2;
 }
 
 .input-value {
-  @apply mx-2 bg-white border rounded-lg py-2 px-4 block w-full appearance-none leading-normal;
+  @apply mr-3 bg-white border rounded-lg py-2 px-4 block w-full appearance-none leading-normal;
 }
 
 .input-value:focus {

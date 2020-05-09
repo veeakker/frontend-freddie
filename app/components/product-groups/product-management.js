@@ -18,16 +18,20 @@ class TempQuantVal {
 }
 
 class TempProduct {
-  @tracked label = ""
+  @tracked label = "";
 
-  @tracked sortIndex = 0
+  @tracked altLabel = "";
 
-  @tracked priceSpecification = null
+  @tracked sortIndex = 0;
 
-  @tracked targetUnit = null
+  @tracked priceSpecification = null;
 
-  constructor( { label, sortIndex } ){
+  @tracked targetUnit = null;
+
+
+  constructor( { label, altLabel, sortIndex } ){
     this.label = label;
+    this.altLabel = altLabel;
     this.sortIndex = sortIndex;
     this.unitPrice = new TempUnitPriceSpecification();
     this.targetUnit = new TempQuantVal();
@@ -50,7 +54,7 @@ export default class ProductGroupsProductManagementComponent extends Component {
   }
 
   resetTempProduct() {
-    this.product = new TempProduct({ label: null, sortIndex: null });
+    this.product = new TempProduct({ label: null, altLabel: null, sortIndex: null });
   }
 
   @action
@@ -71,6 +75,7 @@ export default class ProductGroupsProductManagementComponent extends Component {
 
     const product = this.store.createRecord( 'product', {
       label: this.product.label,
+      altLabel: this.product.altLabel,
       sortIndex: this.product.sortIndex,
       productGroups: [ this.args.productGroup ],
       unitPrice: unitPrice,

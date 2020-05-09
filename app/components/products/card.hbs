@@ -4,48 +4,14 @@
   <AnimatedContainer>
     {{#animated-if @expanded use=this.transition}}
       <Products::InputForm @product={{@product}} @submit={{action this.saveProduct}}>
-
         {{#animated-if this.shouldSave use=this.transition}}
-          <div>
+          <div class="mx-2 my-4">
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
         {{/animated-if}}
-
-        <div class="font-bold mt-2 mb-1 ml-2">Offerings</div>
-
-        {{#each this.orderedOfferings as |offering|}}
-          <div class="pb-2 pt-2 mt-3 mb-3 border rounded border-transparent hover:border-grey">
-            <label class="block">
-              <span class="input-label">Offered amount</span>
-              <Common::QuantitativeValueInput @value={{offering.typeAndQuantity}} />
-            </label>
-            <label class="block">
-              <span class="input-label">Price for package</span>
-              <Common::UnitPriceSpecification @value={{offering.unitPrice}} />
-            </label>
-            <AnimatedContainer class="overflow-hidden">
-              {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes) use=this.transition}}
-                <button class="btn btn-primary" type="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
-              {{/animated-if}}
-            </AnimatedContainer>
-          </div>
-        {{/each}}
-
-        <div class="font-bold mt-2 mb-1 ml-2">Add offering</div>
-
-        <label class="block">
-          <span class="input-label">Offered amount</span>
-          <Common::QuantitativeValueInput @value={{this.tempOffering.typeAndQuantity}} />
-        </label>
-        <label class="block">
-          <span class="input-label">Price for package</span>
-          <Common::UnitPriceSpecification @value={{this.tempOffering.unitPrice}} />
-        </label>
-
-        <button type="button" {{on "click" (fn this.createOffering)}} class="btn btn-secondary">Add offering</button>
-
-        <button type="button" {{on "click" (fn this.updatePrices)}} class="btn btn-secondary">Update prices</button>
       </Products::InputForm>
+
+      <Products::PricingInputForm @product={{@product}} />
     {{/animated-if}}
   </AnimatedContainer>
 </@card>

@@ -1,4 +1,7 @@
 <form {{on "submit" (fn this.submit)}}>
+
+  <div class="font-bold text-xl mt-8 mb-4 ml-2">General info</div>
+
   <label class="input-label">
     Label
     <Input class="input-value" @value={{@product.label}} placeholder="Gezouten spek" />
@@ -11,32 +14,26 @@
     Sort index
     <Input class="input-value" @value={{@product.sortIndex}} @type="number" placeholder={{42}} />
   </label>
-  <label class="input-label" >
+  <label class="input-label">
     Thumbnail
-    <FileUpload
-      @name="photos"
-      @accept="image/*"
-      @multiple={{false}}
-      @onfileadd={{action this.uploadThumbnail}}>
-      <span class="btn btn-secondary">Add a tumbnail</span>
-    </FileUpload>
-    {{#if @product.thumbnail.downloadUrl}}
-      <img class="w-10" src={{@product.thumbnail.downloadUrl}} alt="product thumbnail" />
-    {{/if}}
-  </label>
-
-  <div class="font-bold mt-2 mb-1 ml-2">Pricing info</div>
-
-  <p class="mb-2 ml-2">Following is used for pricing.  The target unit is the shown price.  The target unit indicates the amount a single item in a package would be (eg: 120 grams) and is used when calculating the prices for offers.  If the shown price is in units, the target unit will likely be unit too.</p>
-
-  <label class="block mb-1">
-    <div class="input-label">Unit price:</div>
-    <Common::UnitPriceSpecification @value={{@product.ensuredUnitPrice}} />
-  </label>
-
-  <label class="mb-1 block">
-    <div class="input-label">Target unit:</div>
-    <Common::QuantitativeValueInput @value={{@product.ensuredTargetUnit}} />
+    <div class="mt-4">
+      <div>
+        <FileUpload
+          @name="photos"
+          @accept="image/*"
+          @multiple={{false}}
+          @onfileadd={{action this.uploadThumbnail}}>
+          <span class="btn btn-secondary inline-block mb-2">Set tumbnail</span>
+        </FileUpload>
+      </div>
+      {{#animated-container}}
+        <div>
+          {{#if @product.thumbnail.downloadUrl}}
+            <img class="w-64" src={{@product.thumbnail.downloadUrl}} alt="product thumbnail" />
+          {{/if}}
+        </div>
+      {{/animated-container}}
+    </div>
   </label>
 
   {{yield this.submit}}

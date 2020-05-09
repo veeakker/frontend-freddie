@@ -1,0 +1,60 @@
+<div class="font-bold text-xl mt-8 mb-4 ml-2">Pricing info</div>
+
+<p class="mb-2 ml-2">Following is used for pricing.  The target unit is the shown price.  The target unit indicates the amount a single item in a package would be (eg: 120 grams) and is used when calculating the prices for offers.  If the shown price is in units, the target unit will likely be unit too.</p>
+
+<div class="font-bold mt-8 mb-4 ml-2">Product-wide info</div>
+
+<form submit={{this.saveProductPricing}}>
+  <label class="input-label">
+    Unit price
+    <Common::UnitPriceSpecification @value={{@product.ensuredUnitPrice}} />
+  </label>
+
+  <label class="input-label">
+    Target unit
+    <Common::QuantitativeValueInput @value={{@product.ensuredTargetUnit}} />
+  </label>
+
+  <AnimatedContainer>
+    {{#animated-if this.shouldSave use=this.transition}}
+      <div class="mx-2 my-4">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    {{/animated-if}}
+  </AnimatedContainer>
+</form>
+
+<div class="font-bold mt-8 mb-4 ml-2">Effective offerings</div>
+
+{{#each this.orderedOfferings as |offering|}}
+  <div class="pb-2 pt-2 mt-3 mb-3 border rounded border-transparent hover:border-grey">
+    <label class="input-label">
+      Offered amount
+      <Common::QuantitativeValueInput @value={{offering.typeAndQuantity}} />
+    </label>
+    <label class="input-label">
+      Price for package
+      <Common::UnitPriceSpecification @value={{offering.unitPrice}} />
+    </label>
+    <AnimatedContainer class="overflow-hidden">
+      {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes) use=this.transition}}
+        <button class="btn btn-primary" type="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
+      {{/animated-if}}
+    </AnimatedContainer>
+  </div>
+{{/each}}
+
+<div class="font-bold mt-8 mb-4 ml-2">Add new offering</div>
+
+<label class="input-label">
+  Offered amount
+  <Common::QuantitativeValueInput @value={{this.tempOffering.typeAndQuantity}} />
+</label>
+<label class="input-label">
+  Price for package
+  <Common::UnitPriceSpecification @value={{this.tempOffering.unitPrice}} />
+</label>
+
+<button type="button" {{on "click" (fn this.createOffering)}} class="btn btn-secondary">Add offering</button>
+
+<button type="button" {{on "click" (fn this.updatePrices)}} class="btn btn-secondary">Update prices</button>

@@ -20,16 +20,16 @@
   <AnimatedContainer>
     {{#animated-value this.state use=this.crossFadeAndMatch as |state|}}
       {{#if (eq state "init")}}
-        <button {{action (mut this.state) "makingNew"}} class="btn btn-primary inline-block">New</button>
-        <button {{action (mut this.state) "addingExisting"}} class="btn btn-secondary inline-block">Add</button>
+        <button type="button" {{action (mut this.state) "makingNew"}} class="btn btn-primary inline-block">New</button>
+        <button type="button" {{action (mut this.state) "addingExisting"}} class="btn btn-secondary inline-block">Add</button>
       {{/if}}
       {{#if (eq state "makingNew")}}
-        <button {{action this.createProduct}} class="btn btn-primary inline-block">Create</button>
-        <button {{action (mut this.state) "addingExisting"}} class="btn btn-secondary inline-block">Add</button>
+        <button type="button" {{action this.createProduct}} class="btn btn-primary inline-block">Create</button>
+        <button type="button" {{action (mut this.state) "addingExisting"}} class="btn btn-secondary inline-block">Add</button>
       {{/if}}
       {{#if (eq state "addingExisting")}}
-        <button {{action (mut this.state) "makingNew"}} class="btn btn-secondary inline-block">New</button>
-        <button {{action (mut this.state) "init"}} class="btn btn-primary inline-block">Add</button>
+        <button type="button" {{action (mut this.state) "makingNew"}} class="btn btn-secondary inline-block">New</button>
+        <button type="button" {{action (mut this.state) "init"}} class="btn btn-primary inline-block">Add</button>
       {{/if}}
     {{/animated-value}}
   </AnimatedContainer>
