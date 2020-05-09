@@ -1,6 +1,6 @@
 import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
-import scale from 'ember-animated/motions/resize';
 
+// eslint-disable-next-line require-yield
 export default function*( {insertedSprites, removedSprites, keptSprites} ) {
   for( const sprite of [ ...insertedSprites, ...keptSprites ] ) {
     fadeIn( sprite );
@@ -11,6 +11,7 @@ export default function*( {insertedSprites, removedSprites, keptSprites} ) {
   }
 }
 
+// eslint-disable-next-line require-yield
 const crossFadeAndMatch = function*( {insertedSprites, removedSprites, keptSprites} ){
   for( let i = 0; i < Math.min( insertedSprites.length, removedSprites.length ); i ++ ) {
     const inserted = insertedSprites[i];

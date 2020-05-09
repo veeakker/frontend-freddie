@@ -15,7 +15,7 @@
   <p>
     <span class="card-array-label text-lg font-bold">Product Groups</span>
     <div class="float-right">
-      <button {{action this.toggleEditing}}>
+      <button type="button" {{action this.toggleEditing}}>
         {{#animated-if this.editing use=this.transition}}
           <span class="text-grey-dark">
             Show
@@ -39,9 +39,9 @@
           <label>Group index</label>
           <Input @value={{this.newProductGroupSortIndex}} class="bg-white focus:outline-0 focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" @type="number" placeholder="42" />
 
-          <button class="mt-4 btn btn-primary" {{action this.createProductGroup this.newProductGroupLabel this.newProductGroupSortIndex}}>Create</button>
+          <button type="button" class="mt-4 btn btn-primary" {{action this.createProductGroup this.newProductGroupLabel this.newProductGroupSortIndex}}>Create</button>
         </p>
-      {{/animated-if}}      
+      {{/animated-if}}
     </AnimatedContainer>
   </div>
   <div class="overflow-hidden">

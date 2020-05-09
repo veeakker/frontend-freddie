@@ -9,14 +9,7 @@ import { get, set } from '@ember/object';
  */
 export default function decoratorsFetchProp(property, kind) {
   return function( target, name, descriptor ) {
-    const {
-      configurable,
-      enumerable,
-      value,
-      initializer
-    } = descriptor;
-
-    const intialValue = initializer ? initializer.call( this ) : value;
+    const { configurable, enumerable } = descriptor;
 
     const fetchProperty = async function(){
       if( ! await get( this, property ) )

@@ -25,7 +25,7 @@
             </label>
             <AnimatedContainer class="overflow-hidden">
               {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes) use=this.transition}}
-                <button class="btn btn-primary" role="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
+                <button class="btn btn-primary" type="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
               {{/animated-if}}
             </AnimatedContainer>
           </div>

@@ -3,11 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 import fade from 'ember-animated/transitions/fade';
-import scale from 'ember-animated/motions/scale';
-import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
-import move from 'ember-animated/motions/move';
 import { wait } from 'ember-animated';
-import headerTransition from 'frontend-freddie/utils/transitions/header-transition';
 
 export default class ProductGroupCardComponent extends Component {
   @service store;

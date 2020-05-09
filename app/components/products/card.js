@@ -1,5 +1,4 @@
 import { inject as service } from '@ember/service';
-import EmberObject, { computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
@@ -22,8 +21,8 @@ class TempOfferingValue {
   @tracked unit = null;
 
   constructor( { value, unit } = {} ) {
-    value = value;
-    unit = unit;
+    this.value = value;
+    this.unit = unit;
   }
 
   set( property, value ) {
@@ -44,7 +43,6 @@ export default class ProductsCardComponent extends Component {
   }
 
   resetTempOffering(){
-    console.log("creating temp offering");
     this.tempOffering = new TempOffering({
       unitPrice: new TempOfferingValue(),
       typeAndQuantity: new TempOfferingValue()
@@ -99,9 +97,7 @@ export default class ProductsCardComponent extends Component {
 
   @action
   async updatePrices(){
-    let productUnitPrice = await this.args.product.unitPrice;
-    let productTargetUnit = await this.args.product.targetUnit;
-    let offerings = await this.args.product.offerings;
+    const offerings = await this.args.product.offerings;
     offerings.forEach( async (offering) => {
       await offering.unitPrice;
       await offering.typeAndQuantity;

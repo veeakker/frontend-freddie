@@ -1,5 +1,4 @@
-import DS from 'ember-data';
-const { Model, attr, belongsTo } = DS;
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 export default class TypeAndQuantityModel extends Model {
   @attr('number') value;
@@ -7,7 +6,7 @@ export default class TypeAndQuantityModel extends Model {
   @belongsTo('product') product;
 
   get gramsPerUnit(){
-    switch ( this.get('unit') ) {
+    switch ( this.unit ) {
       case "GRM":
         return 1.0;
       case "KGM":
@@ -16,4 +15,4 @@ export default class TypeAndQuantityModel extends Model {
         return undefined;
     }
   }
-};
+}

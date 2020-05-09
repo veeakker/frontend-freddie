@@ -1,7 +1,5 @@
-import DS from 'ember-data';
 import { computed } from '@ember/object';
-
-const { Model, attr, hasMany } = DS;
+import Model, { attr, hasMany } from '@ember-data/model';
 
 export default class DeliveryKindModel extends Model {
   @attr() label;

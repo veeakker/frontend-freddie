@@ -3,8 +3,6 @@ import { action } from '@ember/object';
 import Controller from '@ember/controller';
 
 import { wait } from 'ember-animated';
-import { fadeIn } from 'ember-animated/motions/opacity';
-import move from 'ember-animated/motions/move';
 import fade from 'ember-animated/transitions/fade';
 
 export default class ProductGroupsIndexController extends Controller {

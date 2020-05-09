@@ -1,9 +1,5 @@
-import { set } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
-import DS from 'ember-data';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 import fetchProp from '../utils/decorators/fetch-prop';
-
-const { Model, attr, hasMany, belongsTo } = DS;
 
 export default class ProductModel extends Model {
   @attr() label;

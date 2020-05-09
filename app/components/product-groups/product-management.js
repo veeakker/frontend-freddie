@@ -3,7 +3,6 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 import fade from 'ember-animated/transitions/fade';
-import crossFade from 'frontend-freddie/utils/transitions/cross-fade';
 import { crossFadeAndMatch } from 'frontend-freddie/utils/transitions/cross-fade';
 
 class TempUnitPriceSpecification {
@@ -83,5 +82,5 @@ export default class ProductGroupsProductManagementComponent extends Component {
     this.resetTempProduct();
     this.state = "init";
   }
-  
+
 }

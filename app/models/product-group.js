@@ -1,7 +1,5 @@
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { computed } from '@ember/object';
-import DS from 'ember-data';
-
-const { Model, attr, belongsTo, hasMany } = DS;
 
 export default class ProductGroupModel extends Model {
   @attr() label;
