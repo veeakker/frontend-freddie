@@ -7,11 +7,17 @@ export default class OfferingModel extends Model {
 
   calculatePricingSync( product ) {
     const offering = this;
+    // the product's price (specified first)
+    const productPrice = product.get('unitPrice');
     const productPriceUnit = product.get('unitPrice.unit');
     const productPricePrice = product.get('unitPrice.value');
-    const productUnitUnit = product.get('targetUnit.value');
+    // the product's comparison to unit (specified second)
+    const productTarget = product.get('targetUnit');
+    const productUnitUnit = product.get('targetUnit.unit');
     const productUnitValue = product.get('targetUnit.value');
+    // the offering's amount/unit (and optionally price)
     const offeringPriceUnit = offering.get('unitPrice.unit');
+    const offeringAmount = offering.get('typeAndQuantity');
     const offeringAmountAmount = offering.get('typeAndQuantity.value');
     const offeringAmountUnit = offering.get('typeAndQuantity.unit');
 
@@ -31,23 +37,18 @@ export default class OfferingModel extends Model {
     }
 
     // if the unit of product is weight and we are weight
-    // -> convert units to same scale to get new result
-    const unitMultiplier = function( amountObj ) {
-      if( amountObj.get('unit') == "GRM" )
-        return 1.0;
-      if( amountObj.get('unit') == "KGM" )
-        return 1000.0;
-      return undefined; // C62
-    };
-
     if( productPriceUnit != "C62" && offeringAmountUnit != "C62" ) {
+
+      // const productUnitPriceMultiplier = unitMultiplier( product.get('unitPrice') );
+      // const offeringAmountUnitMultiplier = unitMultiplier( product.get('offeringAmountUnit') );
+
       offering.set('unitPrice.unit', "C62");
       offering.set('unitPrice.value', // price = amount * price/amount (& reorder for rounding errors)
                    (1.0
                     * productPricePrice
                     * offeringAmountAmount
-                    / ( unitMultiplier( offering.get('typeAndQuantity') )
-                        * unitMultiplier( product.get('unitPrice'))))
+                    * offeringAmount.get('gramsPerUnit')
+                    / productPrice.get('gramsPerUnit'))
                    .toFixed(2));
     }
 
@@ -55,11 +56,20 @@ export default class OfferingModel extends Model {
     // -> use normalized amount to calculate our target value <-- most common case
     if( productPriceUnit != "C62" && productUnitUnit != "C62" // product specified in weight
         && offeringAmountUnit == "C62" ) {
+
+      // const productUnitPriceMultiplier = unitMultiplier( product.get('unitPrice') );
+      // const targetUnitMultiplier = unitMultiplier( product.get('targetUnit') );
+
+      // variables:
+      // - offeringAmountAmount: The amount of items ordered
+      // - product.unitPrice: Price of the product, specified in weight
+
+      // Calculate the price for *one* unit
       const pricePerPiece =
-            productPricePrice
-            * productUnitValue
-            / ( unitMultiplier( product.get('unitPrice') )
-                * unitMultiplier( product.get('targetUnit') ) );
+        productPricePrice
+        * productUnitValue
+        * productTarget.get('gramsPerUnit')
+        / productPrice.get('gramsPerUnit');
 
       offering.set('unitPrice.unit', "C62");
       offering.set('unitPrice.value',
