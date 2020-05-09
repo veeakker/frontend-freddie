@@ -1,10 +1,10 @@
 <div class="card-view readable-width my-8 pt-4 pb-6 px-4">
-  <h1>Product group {{this.model.label}}</h1>
+  <h1>Product group {{this.productGroup.label}}</h1>
 
   <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
     <h2>Parents</h2>
     <p class="mt-2">
-      <ProductGroups::ParentBreadcrumb @productGroup={{this.model.parentGroup}} as |productGroup|>
+      <ProductGroups::ParentBreadcrumb @productGroup={{this.productGroup.parentGroup}} as |productGroup|>
         <div class="overflow-x-hidden inline-block">
           <AnimatedContainer @onInitialRender={{true}}>
             {{#animated-if true use=this.crossFade initialInsertion=true}}
@@ -18,7 +18,7 @@
       </ProductGroups::ParentBreadcrumb>
       <div class="overflow-x-hidden inline-block">
         <AnimatedContainer @onInitialRender={{true}}>
-          {{#animated-value this.model.label use=this.crossFade initialInsertion=true as |label|}}
+          {{#animated-value this.productGroup.label use=this.crossFade initialInsertion=true as |label|}}
             <span class="inline-block overflow-x-show">
               {{label}}
             </span>
@@ -38,20 +38,18 @@
     <p class="overflow-y-hidden">
       <AnimatedContainer @onInitialRender={{true}}>
         <CardArray @color="dark" as |array|>
-          {{#animated-each this.model.sortedProducts initialInsertion=true use=this.crossFade as |product|}}
-            <LocalVariable as |raised lv|>
-              <Products::Card
-                @card={{component array.card raised=raised}}
-                @headerClick={{lv.toggle}}
-                @product={{product}}
-                @expanded={{raised}} />
-            </LocalVariable>
+          {{#animated-each this.productGroup.sortedProducts initialInsertion=true use=this.crossFade as |product|}}
+            <Products::Card
+              @card={{component array.card raised=(includes this.openProductIds product.id)}}
+              @headerClick={{fn this.toggleShowProduct product}}
+              @product={{product}}
+              @expanded={{includes this.openProductIds product.id}} />
           {{/animated-each}}
         </CardArray>
       </AnimatedContainer>
     </p>
 
-    <ProductGroups::ProductManagement @productGroup={{this.model}} />
+    <ProductGroups::ProductManagement @productGroup={{this.productGroup}} />
   </div>
 
   <div class="card-view bg-grey-lighter my-8 pt-4 pb-6 px-4">
