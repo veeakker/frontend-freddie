@@ -1,0 +1,19 @@
+<p class="mb-2 ml-2">Following is used as the more detailed description.  You can enter HTML here if that is desired.  Something like
+  <code>
+    <pre>
+      &lt;p&gt;Here is my first paragraph of content.&lt;/p&gt;
+      &lt;p&gt;Here is my second paragraph of content.&lt;/p&gt;
+    </pre>
+  </code>
+  Would be a good start.  Keep it short, screens are not easy to read from.
+</p>
+
+<form {{on "submit" this.saveProduct}}>
+  {{textarea value=@product.description placeholder="<p>Dit is de beste wilde zalm.  Net wat je verdient.</p><p>Maak de pan goed heet, en bak de zalm 3.5minuten op elke kant.</p>" class="w-full"}}
+
+  <AnimatedContainer>
+    {{#animated-if @product.hasDirtyAttributes use=@use}}
+      <button class="btn btn-primary" type="submit">Update product</button>
+    {{/animated-if}}
+  </AnimatedContainer>
+</form>

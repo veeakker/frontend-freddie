@@ -4,6 +4,7 @@ import fetchProp from '../utils/decorators/fetch-prop';
 export default class ProductModel extends Model {
   @attr() label;
   @attr() altLabel;
+  @attr() description;
   @attr('number') sortIndex;
   @hasMany('product-group') productGroups;
   @hasMany('offering') offerings;

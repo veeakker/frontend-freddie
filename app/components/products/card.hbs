@@ -21,6 +21,10 @@
           <Products::PricingInputForm @product={{@product}} />
 
         </SimpleAnimatedCard>
+        <SimpleAnimatedCard @card={{array.card}} @use={{this.transition}}
+          @label="Product description">
+          <Products::DescriptionInputForm @use={{this.transition}} @product={{@product}} />
+        </SimpleAnimatedCard>
       </CardArray>
     {{/animated-if}}
   </AnimatedContainer>

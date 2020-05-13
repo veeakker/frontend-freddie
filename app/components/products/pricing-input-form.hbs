@@ -2,7 +2,7 @@
 
 <div class="font-bold mt-8 mb-4 ml-2">Product-wide info</div>
 
-<form submit={{this.saveProductPricing}}>
+<form {{on "submit" this.saveProductPricing}}>
   <label class="input-label">
     Unit price
     <Common::UnitPriceSpecification @value={{@product.ensuredUnitPrice}} />
