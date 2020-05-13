@@ -3,15 +3,25 @@
 
   <AnimatedContainer>
     {{#animated-if @expanded use=this.transition}}
-      <Products::InputForm @product={{@product}} @submit={{action this.saveProduct}}>
-        {{#animated-if this.shouldSave use=this.transition}}
-          <div class="mx-2 my-4">
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
-        {{/animated-if}}
-      </Products::InputForm>
+      <CardArray @color="medium" as |array|>
+        <SimpleAnimatedCard @card={{array.card}} @use={{this.transition}}
+          @label="Product overview">
 
-      <Products::PricingInputForm @product={{@product}} />
+          <Products::InputForm @product={{@product}} @submit={{action this.saveProduct}}>
+            {{#animated-if this.shouldSave use=this.transition}}
+              <div class="mx-2 my-4">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            {{/animated-if}}
+          </Products::InputForm>
+        </SimpleAnimatedCard>
+        <SimpleAnimatedCard @card={{array.card}} @use={{this.transition}}
+          @label="Product pricing">
+
+          <Products::PricingInputForm @product={{@product}} />
+
+        </SimpleAnimatedCard>
+      </CardArray>
     {{/animated-if}}
   </AnimatedContainer>
 </@card>

@@ -1,0 +1,11 @@
+<LocalVariable @value={{false}} as |expanded expandState|>
+  {{#component @card raised=expanded}}
+    <AnimatedHeader @label={{@label}} @onClick={{expandState.toggle}} @large={{expanded}} />
+
+    <AnimatedContainer>
+      {{#animated-if expanded use=@use}}
+        {{yield}}
+      {{/animated-if}}
+    </AnimatedContainer>
+  {{/component}}
+</LocalVariable>
