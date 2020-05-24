@@ -29,13 +29,13 @@ export default class ProductsInputFormComponent extends Component {
   setLabel(label, value) {
     const currentLabels = this.args.product.productLabels || [];
     if( value ) {
-      this.args.product.set(
-        "productLabels",
-        [ label.uri, ...currentLabels ] );
+      set( this.args.product,
+           "productLabels",
+           [ label.uri, ...currentLabels ] );
     } else {
-      this.args.product.set(
-        "productLabels",
-        [ ...currentLabels.filter( (x) => x !== label.uri ) ] );
+      set( this.args.product,
+           "productLabels",
+           [ ...currentLabels.filter( (x) => x !== label.uri ) ] );
     }
   }
 

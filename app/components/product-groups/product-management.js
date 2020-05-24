@@ -28,13 +28,18 @@ class TempProduct {
 
   @tracked targetUnit = null;
 
+  @tracked thumbnail = null;
 
-  constructor( { label, altLabel, sortIndex } ){
+  @tracked productLabels = [];
+
+  constructor( { label, altLabel, sortIndex, thumbnail = null, productLabels = [] } ){
     this.label = label;
     this.altLabel = altLabel;
     this.sortIndex = sortIndex;
     this.unitPrice = new TempUnitPriceSpecification();
     this.targetUnit = new TempQuantVal();
+    this.thumbnail = thumbnail;
+    this.productLabels = productLabels;
   }
 }
 
@@ -78,6 +83,8 @@ export default class ProductGroupsProductManagementComponent extends Component {
       altLabel: this.product.altLabel,
       sortIndex: this.product.sortIndex,
       productGroups: [ this.args.productGroup ],
+      productLabels: this.product.productLabels,
+      thumbnail: this.product.thumbnail,
       unitPrice: unitPrice,
       targetUnit: targetUnit
     } );
