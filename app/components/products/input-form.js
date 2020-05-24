@@ -10,17 +10,17 @@ export default class ProductsInputFormComponent extends Component {
     const enabled = (this.args.product.productLabels || []);
     return [{ uri: "http://veeakker.be/product-labels/d9fa5ad6-0d0e-4990-b8a7-ca3a60eb3a85",
         label: "Frozen",
-        image: "/product-labels/diepvries.png",
+        image: "/images/product-labels/diepvries.png",
         selected: enabled.includes( "http://veeakker.be/product-labels/d9fa5ad6-0d0e-4990-b8a7-ca3a60eb3a85")
       },
       { uri: "http://veeakker.be/product-labels/fa0d5d40-762e-4f89-ac82-46c1a4ee00bf",
         label: "Natuurpunt",
-        image: "/product-labels/natuurpunt.png",
+        image: "/images/product-labels/natuurpunt.png",
         selected: enabled.includes( "http://veeakker.be/product-labels/fa0d5d40-762e-4f89-ac82-46c1a4ee00bf")
       },
       { uri: "http://veeakker.be/product-labels/c9e43e38-3f7f-4116-9817-80bdede3f123",
         label: "PintaFish",
-        image: "/product-labels/pintafish.png",
+        image: "/images/product-labels/pintafish.png",
         selected: enabled.includes( "http://veeakker.be/product-labels/c9e43e38-3f7f-4116-9817-80bdede3f123")
       }];
   }
