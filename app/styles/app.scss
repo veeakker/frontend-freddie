@@ -6,6 +6,10 @@ body {
   @extend .text-grey-darkest;
 }
 
+img.product-icon{
+  width: 22px;
+}
+
 * {
   transition: border-color 0.5s ease-out;
 }

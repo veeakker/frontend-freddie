@@ -11,6 +11,20 @@
     Sort index
     <Input class="input-value" @value={{@product.sortIndex}} @type="number" placeholder={{42}} />
   </label>
+  <div class="input-label">
+    Icons
+    <ul>
+      {{#each this.labelArray as |icon|}}
+        <li>
+          <label>
+            <Input @type="checkbox" @checked={{icon.selected}} {{on "click" (fn this.setLabel icon (not icon.selected))}} />
+            <img class="product-icon" src={{icon.image}} alt={{concat "Icon for " icon.label}} />
+            {{icon.label}}
+          </label>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
   <label class="input-label">
     Thumbnail
     <div class="mt-4">
