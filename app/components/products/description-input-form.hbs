@@ -1,15 +1,33 @@
-<p class="mb-2 ml-2">Following is used as the more detailed description.  You can enter HTML here if that is desired.  Something like
-  <code>
-    <pre>
+<form {{on "submit" this.saveProduct}}>
+  <p class="mb-1 ml-2 mt-8">
+    Following information is entered as HTML text.  Both of these forms may change over times as we get a better grasp on what is stored in there.  HTML is our best starting point.  Try to keep content to the minimum needed, displays are hard to read.
+  </p>
+
+  <p class="ml-2 mb-2 font-normal">
+    Take the following code as an example:
+  </p>
+
+  <div class="mt-8 mb-4">
+    <code>
+      <pre>
       &lt;p&gt;Here is my first paragraph of content.&lt;/p&gt;
       &lt;p&gt;Here is my second paragraph of content.&lt;/p&gt;
-    </pre>
-  </code>
-  Would be a good start.  Keep it short, screens are not easy to read from.
-</p>
+      </pre>
+    </code>
+  </div>
 
-<form {{on "submit" this.saveProduct}}>
-  {{textarea value=@product.description placeholder="<p>Dit is de beste wilde zalm.  Net wat je verdient.</p><p>Maak de pan goed heet, en bak de zalm 3.5minuten op elke kant.</p>" class="w-full"}}
+
+  <label class="input-label mt-4 mb-4">
+    Description
+
+    {{textarea value=@product.description placeholder="<p>Dit is de beste wilde zalm.  Net wat je verdient.</p><p>Maak de pan goed heet, en bak de zalm 3.5minuten op elke kant.</p>" class="w-full mt-4"}}
+  </label>
+
+  <label class="input-label mt-4 mb-4">
+    Ingredients
+
+    {{textarea value=@product.ingredientsText placeholder="<p>Per 100g: 30g varkensvet, 20g zout, 50g water.</p>" class="w-full mt-4"}}
+  </label>
 
   <AnimatedContainer>
     {{#animated-if @product.hasDirtyAttributes use=@use}}
