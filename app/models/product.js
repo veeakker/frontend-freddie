@@ -11,6 +11,7 @@ export default class ProductModel extends Model {
   @attr('number') sortIndex;
   @attr('number') plu;
   @attr('uri-set') productLabels;
+  @attr('boolean') isEnabled;
   @hasMany('product-group') productGroups;
   @hasMany('offering') offerings;
   @belongsTo('unit-price-specification') unitPrice;

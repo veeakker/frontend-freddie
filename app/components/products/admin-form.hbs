@@ -1,0 +1,21 @@
+<p class="mb-2 ml-2">
+  In this section you'll find administrative tasks for the product as a whole.  Things like disabling the product or specifying the order in which the product should appear appear in this generic section.  The information has little to do with the product itself, but rather controls the way it is portreyed.
+</p>
+
+<form {{on "submit" (fn this.submit)}}>
+  <label class="input-label">
+    Sort index
+    <Input class="input-value" @value={{@product.sortIndex}} @type="number" placeholder={{42}} />
+  </label>
+
+  <label class="input-label">
+    Enabled?
+    <Input @checked={{@product.isEnabled}} @type="checkbox" />
+  </label>
+
+  <AnimatedContainer>
+    {{#animated-if @product.hasDirtyAttributes use=@use}}
+      <button class="btn btn-primary" type="submit">Update product</button>
+    {{/animated-if}}
+  </AnimatedContainer>
+</form>

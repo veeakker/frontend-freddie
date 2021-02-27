@@ -23,7 +23,10 @@
         </SimpleAnimatedCard>
         <SimpleAnimatedCard @card={{array.card}} @use={{this.transition}}
           @label="Product description">
-          <Products::DescriptionInputForm @use={{this.transition}} @product={{@product}} />
+          <Products::DescriptionInputForm @use={{this.transition}} @product={{@product}} @use={{@use}} />
+        </SimpleAnimatedCard>
+        <SimpleAnimatedCard @card={{array.card}} @use={{this.transition}} @label="Admin area">
+          <Products::AdminForm @product={{@product}} />
         </SimpleAnimatedCard>
       </CardArray>
     {{/animated-if}}
