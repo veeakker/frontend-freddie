@@ -29,6 +29,18 @@
     {{textarea value=@product.ingredientsText placeholder="<p>Per 100g: 30g varkensvet, 20g zout, 50g water.</p>" class="w-full mt-4"}}
   </label>
 
+  <label class="input-label mt-4 mb-4">
+    Allergens
+
+    {{textarea value=@product.allergensText placeholder="<p>Voorbeeld niet gekend, worden later gestructureerd ingegeven</p>" class="w-full mt-4"}}
+  </label>
+
+  <label class="input-label mt-4 mb-4">
+    Nutricion data
+
+    {{textarea value=@product.nutricionDataText placeholder="<p>Voorbeeld niet gekend, wordt later gestructureerd ingegeven</p>" class="w-full mt-4"}}
+  </label>
+
   <AnimatedContainer>
     {{#animated-if @product.hasDirtyAttributes use=@use}}
       <button class="btn btn-primary" type="submit">Update product</button>

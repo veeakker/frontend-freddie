@@ -6,6 +6,8 @@ export default class ProductModel extends Model {
   @attr() altLabel;
   @attr() description;
   @attr() ingredientsText;
+  @attr() allergensText;
+  @attr() nutricionDataText;
   @attr('number') sortIndex;
   @attr('number') plu;
   @attr('uri-set') productLabels;
