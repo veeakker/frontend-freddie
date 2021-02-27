@@ -18,7 +18,7 @@
             </span>
           {{else}}
             <span class="text-grey cursor-pointer">
-              <LinkTo class="text-grey" @route="product-groups.show" @model={{@productGroup}}>Products</LinkTo> | Edit
+              <LinkTo class="text-grey" @route="product-groups.show" @model={{@productGroup.id}}>Products</LinkTo> | Edit
             </span>
           {{/animated-if}}
         </button>
