@@ -34,11 +34,14 @@
       Price for package
       <Common::UnitPriceSpecification @value={{offering.unitPrice}} />
     </label>
-    <AnimatedContainer class="overflow-hidden">
-      {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes) use=this.transition}}
+    <div class="mt-4 mb-2 ml-2 inline-block">
+      <Common::RemoveButton @remove={{fn this.removeOffering offering}} />
+    </div>
+    {{#animated-if (or offering.unitPrice.hasDirtyAttributes offering.typeAndQuantity.hasDirtyAttributes) use=this.transition}}
+      <div class="mt-4 mb-2 inline-block">
         <button class="btn btn-primary" type="button" {{on "click" (action this.updateOffering offering)}}>Update</button>
-      {{/animated-if}}
-    </AnimatedContainer>
+      </div>
+    {{/animated-if}}
   </div>
 {{/each}}
 

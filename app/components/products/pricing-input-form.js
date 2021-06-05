@@ -86,6 +86,13 @@ export default class ProductsPricingInputFormComponent extends Component {
   }
 
   @action
+  async removeOffering(offering) {
+    const offerings = await this.args.product.offerings;
+    offerings.removeObject(offering);
+    await offerings.save();
+  }
+
+  @action
   async createOffering(event){
     event.preventDefault();
     const product = this.args.product;
