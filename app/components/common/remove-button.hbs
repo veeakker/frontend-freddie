@@ -1,0 +1,7 @@
+<button {{on "click" (if this.staged this.args.remove (fn (mut this.staged) true))}} type="button" class="btn btn-alarm">
+  {{#if this.staged}}
+    Are you sure?
+  {{else}}
+    Remove
+  {{/if}}
+</button>
