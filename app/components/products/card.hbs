@@ -1,5 +1,12 @@
 <@card>
-  <AnimatedHeader @label={{@product.label}} @onClick={{@headerClick}} @large={{@expanded}} />
+<AnimatedHeader
+  @label={{concat
+             "["(if @product.isEnabled "V" "X") ":" @product.plu "]"
+             (if @product.hasDirtyAttributes "*" "")
+             " "
+             @product.label}}
+  @onClick={{@headerClick}}
+  @large={{@expanded}} />
 
   <AnimatedContainer>
     {{#animated-if @expanded use=this.transition}}
