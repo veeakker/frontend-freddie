@@ -12,13 +12,18 @@ export default function*( { insertedSprites, removedSprites, keptSprites, durati
     [ keptSprite, ...otherKeptSprites ] = keptSprites;
   }
 
-  removedSprite.endAtSprite( insertedSprite );
-  insertedSprite.startAtSprite( removedSprite );
+  if( insertedSprite && removedSprite ) {
+    // if for race conditions
+    removedSprite.endAtSprite( insertedSprite );
+    insertedSprite.startAtSprite( removedSprite );
+  }
 
   for ( const sprite of [ insertedSprite, removedSprite, keptSprite ] ) {
-    if( sprite ) { // keptSprite might be undefined
+    if( sprite && sprite.finalBounds ) { // keptSprite might be undefined
       scale( sprite, duration );
       move( sprite, duration );
+    } else if( sprite ) {
+      sprite.hide();
     }
   }
 
@@ -30,11 +35,14 @@ export default function*( { insertedSprites, removedSprites, keptSprites, durati
   for (const sprite of otherRemovedSprites )
     fadeOut( sprite );
 
-  insertedSprite.hide();
+  if( insertedSprite ) // race condition
+    insertedSprite.hide();
 
   fadeOut( removedSprite, 2 * duration / 3 );
   yield wait( duration / 2 );
-  insertedSprite.reveal();
-  fadeIn( insertedSprite, 2 * duration / 3 );
+  if( insertedSprite ) {
+    // race condition
+    insertedSprite.reveal();
+    fadeIn( insertedSprite, 2 * duration / 3 );
+  }
 }
-
