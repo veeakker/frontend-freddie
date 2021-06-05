@@ -1,8 +1,8 @@
 <AnimatedContainer ...attributes>
   {{#animated-if @large use=this.headerTransition}}
-    <h1 class="inline-block cursor-pointer" role="button" {{on "click" @onClick}}>{{@label}}</h1>
+    <h1 class="inline-block cursor-pointer disable-selection" role="button" {{on "click" @onClick}}>{{@label}}</h1>
   {{else}}
-    <span class="inline-block cursor-pointer" role="button" {{on "click" @onClick}}>{{@label}}</span>
+    <span class="inline-block cursor-pointer disable-selection" role="button" {{on "click" @onClick}}>{{@label}}</span>
     <span>{{yield}}</span>
   {{/animated-if}}
 </AnimatedContainer>
