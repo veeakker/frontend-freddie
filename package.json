@@ -22,7 +22,7 @@
     "@glimmer/component": "^1.0.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-animated": "^0.10.1",
+    "ember-animated": "^0.11.0",
     "ember-animated-tools": "^0.4.1",
     "ember-auto-import": "^1.5.3",
     "ember-cli": "3.18.0",
@@ -44,7 +44,7 @@
     "ember-cli-tailwind": "^0.7.0",
     "ember-cli-template-lint": "^2.0.2",
     "ember-cli-uglify": "^3.0.0",
-    "ember-cli-update": "^0.54.6",
+    "ember-cli-update": "^1.0.0",
     "ember-data": "^3.18.0",
     "ember-drag-drop": "^0.7.0",
     "ember-export-application-global": "^2.0.1",
@@ -67,6 +67,7 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
-    "@ember-decorators/data": "^5.2.0"
+    "@ember-decorators/data": "^5.2.0",
+    "npm-check-updates": "^11.8.5"
   }
 }

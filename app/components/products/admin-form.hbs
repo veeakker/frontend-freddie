@@ -12,6 +12,7 @@
     Enabled?
     <Input @checked={{@product.isEnabled}} @type="checkbox" />
   </label>
+  <DeleteButton @item={{@product}}/>
 
   <AnimatedContainer>
     {{#animated-if @product.hasDirtyAttributes use=@use}}
