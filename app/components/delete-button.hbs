@@ -1,2 +1,7 @@
 {{yield}}
-<button class="m-2" {{action clicked @item}} class="btn btn-secondary">Delete</button>
+<button
+  class="m-2 btn btn-secondary"
+  type="button"
+  {{on "click" (fn this.clicked @item)}}>
+  Delete
+</button>
